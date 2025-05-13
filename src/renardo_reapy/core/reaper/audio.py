@@ -36,7 +36,7 @@ def get_input_names():
     names : list of str
         Names of input channels.
     """
-    n_channels = renardo_reapy.audio.get_n_inputs()
+    n_channels = runtime.audio.get_n_inputs()
     return tuple(map(RPR.GetInputChannelName, range(n_channels)))
 
 
@@ -99,7 +99,7 @@ def get_output_names():
     names : list of str
         Names of output channels.
     """
-    n_channels = renardo_reapy.audio.get_n_outputs()
+    n_channels = runtime.audio.get_n_outputs()
     return tuple(map(RPR.GetOutputChannelName, range(n_channels)))
 
 

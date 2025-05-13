@@ -53,9 +53,9 @@ def map(function, *iterables, constants={}, kwargs_iterable=None):
     >>> import time
     >>> import renardo_reapy.runtime as runtime
     >>>
-    >>> project = renardo_reapy.Project()
+    >>> project = runtime.Project()
     >>> take = project.items[0].active_take
-    >>> with renardo_reapy.inside_reaper():
+    >>> with runtime.inside_reaper():
     ...     start_time = time.time()
     ...     ppqs = [take.time_to_ppq(time) for time in range(10**5)]
     ...     print(f'Elapsed time without renardo_reapy.map: {time.time() - start_time:.1f} s.')
@@ -63,7 +63,7 @@ def map(function, *iterables, constants={}, kwargs_iterable=None):
     Elapsed time without renardo_reapy.map: 15.0 s.
     >>>
     >>> start_time = time.time()
-    >>> ppqs = renardo_reapy.map(take.time_to_ppq, list(range(10**5)))
+    >>> ppqs = runtime.map(take.time_to_ppq, list(range(10**5)))
     >>> print(f'Elapsed time with renardo_reapy.map: {time.time() - start_time:.1f} s.')
     Elapsed time with renardo_reapy.map: 0.7 s.
     """

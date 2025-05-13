@@ -18,7 +18,7 @@ def get_color_theme():
 
 def get_leftmost_track_in_mixer():
     """Return leftmost track in mixer."""
-    return renardo_reapy.Track(RPR.GetMixerScroll())
+    return runtime.Track(RPR.GetMixerScroll())
 
 
 def set_color_theme(path):

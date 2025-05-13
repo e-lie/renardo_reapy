@@ -26,7 +26,7 @@ class Track(ReapyObject):
     In most cases, accessing tracks is better done directly from
     the parent Project:
 
-    >>> project = renardo_reapy.Project()
+    >>> project = runtime.Project()
     >>> project.tracks[0]
     Track("(MediaTrack*)0x00000000110A1AD0")
     >>> project.tracks["PIANO"]  # This is actually the same track
@@ -34,12 +34,12 @@ class Track(ReapyObject):
 
     But the same track can also directly be instantiated with:
 
-    >>> renardo_reapy.Track(0, project)
+    >>> runtime.Track(0, project)
     Track("(MediaTrack*)0x00000000110A1AD0")
 
     or
 
-    >>> renardo_reapy.Track("PIANO", project)
+    >>> runtime.Track("PIANO", project)
     Track("(MediaTrack*)0x00000000110A1AD0")
     """
 
@@ -76,7 +76,7 @@ class Track(ReapyObject):
         Should only be used internally; one should directly access
         Track.project instead of calling this method.
         """
-        for project in renardo_reapy.get_projects():
+        for project in runtime.get_projects():
             if self.id in [t.id for t in project.tracks]:
                 return project
 
@@ -90,7 +90,7 @@ class Track(ReapyObject):
             Audio accessor on track.
         """
         audio_accessor_id = RPR.CreateTrackAudioAccessor(self.id)
-        audio_accessor = renardo_reapy.AudioAccessor(audio_accessor_id)
+        audio_accessor = runtime.AudioAccessor(audio_accessor_id)
         return audio_accessor
 
     def add_fx(self, name, input_fx=False, even_if_exists=True):
@@ -125,7 +125,7 @@ class Track(ReapyObject):
         )
         if index == -1:
             raise ValueError("Can't find FX named {}".format(name))
-        fx = renardo_reapy.FX(self, index)
+        fx = runtime.FX(self, index)
         return fx
 
     @inside_reaper()
@@ -150,7 +150,7 @@ class Track(ReapyObject):
         """
         if end is None:
             end = start + length
-        item = renardo_reapy.Item(RPR.AddMediaItemToTrack(self.id))
+        item = runtime.Item(RPR.AddMediaItemToTrack(self.id))
         item.position = start
         item.length = end - start
         return item
@@ -170,7 +170,7 @@ class Track(ReapyObject):
             default).
         """
         item_id = RPR.CreateNewMIDIItemInProj(self.id, start, end, quantize)[0]
-        item = renardo_reapy.Item(item_id)
+        item = runtime.Item(item_id)
         return item
 
     def add_send(self, destination=None):
@@ -192,7 +192,7 @@ class Track(ReapyObject):
             destination = destination.id
         send_id = RPR.CreateTrackSend(self.id, destination)
         type = "hardware" if destination is None else "send"
-        send = renardo_reapy.Send(self, send_id, type=type)
+        send = runtime.Send(self, send_id, type=type)
         return send
 
     @property
@@ -241,7 +241,7 @@ class Track(ReapyObject):
         :type: tuple of int
         """
         native_color = RPR.GetTrackColor(self.id)
-        r, g, b = renardo_reapy.rgb_from_native(native_color)
+        r, g, b = runtime.rgb_from_native(native_color)
         return r, g, b
 
     @color.setter
@@ -255,7 +255,7 @@ class Track(ReapyObject):
             Triplet of integers between 0 and 255 corresponding to RGB
             values.
         """
-        native_color = renardo_reapy.rgb_to_native(color)
+        native_color = runtime.rgb_to_native(color)
         RPR.SetTrackColor(self.id, native_color)
 
     def delete(self):
@@ -281,7 +281,7 @@ class Track(ReapyObject):
 
         :type: EnvelopeList
         """
-        return renardo_reapy.EnvelopeList(self)
+        return runtime.EnvelopeList(self)
 
     @property
     def fxs(self):
@@ -290,7 +290,7 @@ class Track(ReapyObject):
 
         :type: FXList
         """
-        fxs = renardo_reapy.FXList(self)
+        fxs = runtime.FXList(self)
         return fxs
 
     def get_info_string(self, param_name):
@@ -331,7 +331,7 @@ class Track(ReapyObject):
         if self._project is None:
             return any(
                 RPR.ValidatePtr2(p.id, pointer, name)
-                for p in renardo_reapy.get_projects()
+                for p in runtime.get_projects()
             )
         return bool(RPR.ValidatePtr2(self.project.id, pointer, name))
 
@@ -377,7 +377,7 @@ class Track(ReapyObject):
         :type: FX or None
         """
         fx_index = RPR.TrackFX_GetInstrument(self.id)
-        instrument = None if fx_index == -1 else renardo_reapy.FX(self, fx_index)
+        instrument = None if fx_index == -1 else runtime.FX(self, fx_index)
         return instrument
 
     @inside_reaper()
@@ -392,7 +392,7 @@ class Track(ReapyObject):
         item_ids = [
             RPR.GetTrackMediaItem(self.id, i) for i in range(n_items)
         ]
-        return list(map(renardo_reapy.Item, item_ids))
+        return list(map(runtime.Item, item_ids))
 
     @property
     def is_muted(self):
@@ -473,7 +473,7 @@ class Track(ReapyObject):
 
     @property
     def midi_note_names(self):
-        with renardo_reapy.inside_reaper():
+        with runtime.inside_reaper():
             names = [
                 RPR.GetTrackMIDINoteName(self.id, i, 0) for i in range(128)
             ]
@@ -580,7 +580,7 @@ class Track(ReapyObject):
     @property
     def receives(self):
         return [
-            renardo_reapy.Send(self, i, type="receive") for i in range(self.n_receives)
+            runtime.Send(self, i, type="receive") for i in range(self.n_receives)
         ]
 
     def select(self):
@@ -593,7 +593,7 @@ class Track(ReapyObject):
     @property
     def sends(self):
         return [
-            renardo_reapy.Send(self, i, type="send") for i in range(self.n_sends)
+            runtime.Send(self, i, type="send") for i in range(self.n_sends)
         ]
 
     def set_info_string(self, param_name, param_string):
@@ -650,7 +650,7 @@ class Track(ReapyObject):
 
         :type: FX or NoneType
         """
-        with renardo_reapy.inside_reaper():
+        with runtime.inside_reaper():
             return self.fxs[RPR.TrackFX_GetChainVisible(self.id)]
 
 

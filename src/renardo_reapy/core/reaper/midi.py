@@ -11,7 +11,7 @@ def get_active_editor():
     editor : MIDIEditor or None
         Active MIDI editor, or None if no editor is active.
     """
-    editor = renardo_reapy.MIDIEditor(RPR.MIDIEditor_GetActive())
+    editor = runtime.MIDIEditor(RPR.MIDIEditor_GetActive())
     if not editor._is_defined:
         editor = None
     return editor
@@ -27,7 +27,7 @@ def get_input_names():
     names : list of str
         Names of input channels.
     """
-    n_channels = renardo_reapy.midi.get_n_inputs()
+    n_channels = runtime.midi.get_n_inputs()
     return [RPR.GetMIDIInputName(i, "", 2048)[2] for i in range(n_channels)]
 
 
@@ -93,7 +93,7 @@ def get_output_names():
     names : list of str
         Names of output channels.
     """
-    n_channels = renardo_reapy.midi.get_n_outputs()
+    n_channels = runtime.midi.get_n_outputs()
     return [RPR.GetMIDIOutputName(i, "", 2048)[2] for i in range(n_channels)]
 
 

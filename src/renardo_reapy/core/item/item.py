@@ -28,7 +28,7 @@ class Item(ReapyObject):
         take : Take
             Active take of the item.
         """
-        take = renardo_reapy.Take(RPR.GetActiveTake(self.id))
+        take = runtime.Take(RPR.GetActiveTake(self.id))
         return take
 
     def add_take(self):
@@ -41,7 +41,7 @@ class Item(ReapyObject):
             New take in item.
         """
         take_id = RPR.AddTakeToMediaItem(self.id)
-        take = renardo_reapy.Take(take_id)
+        take = runtime.Take(take_id)
         return take
 
     @inside_reaper()
@@ -68,7 +68,7 @@ class Item(ReapyObject):
             index-th take of media item.
         """
         take_id = RPR.GetItemTake(self.id, index)
-        take = renardo_reapy.Take(take_id)
+        take = runtime.Take(take_id)
         return take
 
     @inside_reaper()
@@ -171,9 +171,9 @@ class Item(ReapyObject):
         """
         Item parent project.
 
-        :type: renardo_reapy.Project
+        :type: runtime.Project
         """
-        return renardo_reapy.Project(RPR.GetItemProjectContext(self.id))
+        return runtime.Project(RPR.GetItemProjectContext(self.id))
 
     def set_info_value(self, param_name, value):
         return RPR.SetMediaItemInfo_Value(self.id, param_name, value)
@@ -209,7 +209,7 @@ class Item(ReapyObject):
         """
         n_takes = RPR.GetMediaItemNumTakes(self.id)
         take_ids = [RPR.GetMediaItemTake(self.id, i) for i in range(n_takes)]
-        takes = [renardo_reapy.Take(take_id) for take_id in take_ids]
+        takes = [runtime.Take(take_id) for take_id in take_ids]
         return takes
 
     @inside_reaper()
@@ -232,13 +232,13 @@ class Item(ReapyObject):
         >>> item.track = 0  # Move to track 0
         """
         track_id = RPR.GetMediaItemTrack(self.id)
-        track = renardo_reapy.Track(track_id)
+        track = runtime.Track(track_id)
         return track
 
     @track.setter
     def track(self, track):
         if isinstance(track, int):
-            track = renardo_reapy.Track(track, project=self.project)
+            track = runtime.Track(track, project=self.project)
         RPR.MoveMediaItemToTrack(self.id, track.id)
 
     def update(self):

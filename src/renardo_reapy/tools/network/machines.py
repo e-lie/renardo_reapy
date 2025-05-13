@@ -3,7 +3,7 @@ import sys
 import warnings
 
 import renardo_reapy.runtime as runtime
-import renardo_reapy.config
+import renardo_reapy.config as config
 from renardo_reapy import errors
 from . import client, web_interface
 from renardo_reapy.inside_reaper import is_inside_reaper
@@ -37,10 +37,10 @@ def reconnect():
     Assume no REAPER instance is active.
     >>> import renardo_reapy.runtime as runtime
     errors.DisabledDistAPIWarning: Can't reach distant API. Please start REAPER, or
-    call renardo_reapy.config.enable_dist_api() from inside REAPER to enable distant
+    call runtime.config.enable_dist_api() from inside REAPER to enable distant
     API.
       warnings.warn(errors.DisabledDistAPIWarning())
-    >>> p = renardo_reapy.Project()  # Results in error
+    >>> p = runtime.Project()  # Results in error
     Traceback (most recent call last):
       File "<string>", line 1, in <module>
       File "reapy\\core\\project\\project.py", line 26, in __init__
@@ -48,8 +48,8 @@ def reconnect():
     AttributeError: module 'renardo_reapy.reascript_api' has no attribute 'EnumProjects'
     >>> # Now start REAPER
     ...
-    >>> renardo_reapy.reconnect()
-    >>> p = renardo_reapy.Project()  # No error!
+    >>> runtime.reconnect()
+    >>> p = runtime.Project()  # No error!
     """
     if not is_inside_reaper():
         host = get_selected_machine_host()
@@ -91,8 +91,8 @@ class connect:
             if host not in CLIENTS:
                 register_machine(host)
             CLIENT = CLIENTS[host]
-            if hasattr(renardo_reapy, 'reascript_api'):  # False during initial import
-                importlib.reload(renardo_reapy.reascript_api)
+            if hasattr(runtime, 'reascript_api'):  # False during initial import
+                importlib.reload(runtime.reascript_api)
         except errors.DisabledDistAPIError as e:
             if host and host != 'localhost':
                 raise e
@@ -104,7 +104,7 @@ class connect:
     def __exit__(self, exc_type, exc_value, traceback):
         global CLIENT
         CLIENT = self.previous_client
-        importlib.reload(renardo_reapy.reascript_api)
+        importlib.reload(runtime.reascript_api)
 
 
 class connect_to_default_machine(connect):
@@ -130,7 +130,7 @@ def register_machine(host):
     if is_inside_reaper() and host == "localhost":
         msg = "A REAPER instance can not connect to istelf."
         raise errors.InsideREAPERError(msg)
-    interface_port = renardo_reapy.config.WEB_INTERFACE_PORT
+    interface_port = config.WEB_INTERFACE_PORT
     interface = web_interface.WebInterface(interface_port, host)
     CLIENTS[host] = client.Client(interface.get_reapy_server_port(), host)
 

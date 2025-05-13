@@ -33,11 +33,11 @@ class Envelope(ReapyObject):
 
         Returns
         -------
-        item : renardo_reapy.AutomationItem
+        item : runtime.AutomationItem
             New automation item.
         """
         item_index = RPR.InsertAutomationItem(self.id, pool, position, length)
-        item = renardo_reapy.AutomationItem(envelope=self, index=item_index)
+        item = runtime.AutomationItem(envelope=self, index=item_index)
         return item
 
     def delete_points_in_range(self, start, end):
@@ -141,9 +141,9 @@ class Envelope(ReapyObject):
         """
         List of automation items in envelope.
 
-        :type: list of renardo_reapy.AutomationItem
+        :type: list of runtime.AutomationItem
         """
-        items = [renardo_reapy.AutomationItem(self, i) for i in range(self.n_items)]
+        items = [runtime.AutomationItem(self, i) for i in range(self.n_items)]
         return items
 
     @property

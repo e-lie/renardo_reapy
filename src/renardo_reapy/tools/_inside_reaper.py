@@ -34,13 +34,13 @@ class inside_reaper(contextlib.ContextDecorator):
     --------
     Instead of running:
 
-    >>> project = renardo_reapy.Project()
+    >>> project = runtime.Project()
     >>> l = [project.bpm for i in range(1000)
 
     which takes around 30 seconds, run:
 
-    >>> project = renardo_reapy.Project()
-    >>> with renardo_reapy.inside_reaper():
+    >>> project = runtime.Project()
+    >>> with runtime.inside_reaper():
     ...     l = [project.bpm for i in range(1000)
     ...
 
@@ -51,7 +51,7 @@ class inside_reaper(contextlib.ContextDecorator):
     >>> @inside_reaper()
     ... def add_n_tracks(n):
     ...     for x in range(n):
-    ...         renardo_reapy.Project().add_track()
+    ...         runtime.Project().add_track()
 
     """
 

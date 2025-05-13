@@ -86,7 +86,7 @@ def add_reascript(resource_path, script_path):
 
     Works by manually editing ``reaper-kb.ini`` configuration file.
     Only use this function at setup time to configure REAPER.
-    In other cases, make use of :func:`renardo_reapy.add_reascript`.
+    In other cases, make use of :func:`runtime.add_reascript`.
 
     In case ``script_path`` is already in Actions list, its command
     name is returned but it is not added a second time.
@@ -95,7 +95,7 @@ def add_reascript(resource_path, script_path):
     ----------
     resource_path : str
         Path to REAPER resource directory. Can be obtained with
-        :func:`renardo_reapy.config.resource_path.get_resource_path`.
+        :func:`runtime.config.resource_path.get_resource_path`.
     script_path : str
         Path to script that will be added.
 
@@ -148,7 +148,7 @@ def add_web_interface(resource_path, port=WEB_INTERFACE_PORT):
     ----------
     resource_path : str
         Path to REAPER resource directory. Can be obtained with
-        :func:`renardo_reapy.config.resource_path.get_resource_path`.
+        :func:`runtime.config.resource_path.get_resource_path`.
     port : int, optional
         Web interface port. Default=``2307``.
     """
@@ -174,7 +174,7 @@ def configure_reaper(resource_path=None, detect_portable_install=True):
     2. Fill in path to python shared library (.dll, .dylib or .so).
     3. Add a web interface on port 2307 to listen to reapy
        connections.
-    4. Add the ReaScript ``renardo_reapy.reascripts.activate_reapy_server``
+    4. Add the ReaScript ``runtime.reascripts.activate_reapy_server``
        to the *Actions* list.
     5. Add the name of this action to REAPER external state.
 
@@ -186,7 +186,7 @@ def configure_reaper(resource_path=None, detect_portable_install=True):
     resource_path : str or None, optional
         Path to REAPER resource directory. When ``None``, defaults to
         the result of
-        :func:`renardo_reapy.config.resource_path.get_resource_path`. Use it
+        :func:`runtime.config.resource_path.get_resource_path`. Use it
         if you already know where REAPER resource directory is
         located at.
     detect_portable_install : bool, optional
@@ -212,7 +212,7 @@ def configure_reaper(resource_path=None, detect_portable_install=True):
     enable_python(resource_path)
     add_web_interface(resource_path)
     action = add_reascript(resource_path, get_activate_reapy_server_path())
-    set_ext_state("renardo_reapy", "activate_reapy_server", action, resource_path)
+    set_ext_state("runtime", "activate_reapy_server", action, resource_path)
 
 
 def create_new_web_interface(port):
@@ -220,7 +220,7 @@ def create_new_web_interface(port):
 
     .. deprecated:: 0.8.0
           ``create_new_web_interface`` will be removed in renardo_reapy 1.0.0.
-          Use :func:`renardo_reapy.config.add_web_interface` that works from
+          Use :func:`runtime.config.add_web_interface` that works from
           outside REAPER.
 
     It is added by writing a line directly in REAPER .ini file. Thus
@@ -233,10 +233,10 @@ def create_new_web_interface(port):
     """
     msg = (
         "Function create_new_web_interface is deprecated since 0.8.0. "
-        "Use renardo_reapy.config.add_web_interface instead."
+        "Use runtime.config.add_web_interface instead."
     )
     warnings.warn(FutureWarning(msg))
-    config = Config(renardo_reapy.get_ini_file())
+    config = Config(runtime.get_ini_file())
     csurf_count = int(config["reaper"].get("csurf_cnt", "0"))
     csurf_count += 1
     config["reaper"]["csurf_cnt"] = str(csurf_count)
@@ -256,7 +256,7 @@ def delete_web_interface(resource_path, port=WEB_INTERFACE_PORT):
     ----------
     resource_path : str
         Path to REAPER resource directory. Can be obtained with
-        :func:`renardo_reapy.config.resource_path.get_resource_path`.
+        :func:`runtime.config.resource_path.get_resource_path`.
     port : int, optional
         Web interface port. Default=``2307``.
     """
@@ -287,18 +287,18 @@ def disable_dist_api():
     Disable distant API.
 
     Delete ``renardo_reapy`` Web interface, and remove the ReaScript
-    ``renardo_reapy.reascripts.activate_reapy_server`` from the
+    ``runtime.reascripts.activate_reapy_server`` from the
     Actions list.
     """
     if not is_inside_reaper():
         raise OutsideREAPERError
-    delete_web_interface(renardo_reapy.get_resource_path(), WEB_INTERFACE_PORT)
+    delete_web_interface(runtime.get_resource_path(), WEB_INTERFACE_PORT)
     reascript_path = get_activate_reapy_server_path()
-    renardo_reapy.remove_reascript(reascript_path)
+    runtime.remove_reascript(reascript_path)
     message = (
         "renardo_reapy will be disabled as soon as you restart REAPER."
     )
-    renardo_reapy.show_message_box(message)
+    runtime.show_message_box(message)
 
 
 def enable_dist_api():
@@ -321,15 +321,15 @@ def enable_dist_api():
         raise OutsideREAPERError
     create_new_web_interface(WEB_INTERFACE_PORT)
     reascript_path = get_activate_reapy_server_path()
-    action_id = renardo_reapy.add_reascript(reascript_path)
-    command_name = json.dumps(renardo_reapy.get_command_name(action_id))
+    action_id = runtime.add_reascript(reascript_path)
+    command_name = json.dumps(runtime.get_command_name(action_id))
     section, key, value = "renardo_reapy", "activate_reapy_server", command_name
-    renardo_reapy.set_ext_state(section, key, value, persist=True)
+    runtime.set_ext_state(section, key, value, persist=True)
     message = (
         "renardo_reapy successfully enabled!\n\nPlease restart REAPER.\n\nYou will "
         "then be able to import renardo_reapy.runtime from the outside."
     )
-    renardo_reapy.show_message_box(message)
+    runtime.show_message_box(message)
 
 
 def enable_python(resource_path):
@@ -390,7 +390,7 @@ def set_ext_state(section, key, value, resource_path):
         External state value for ``key`` in ``section``.
     resource_path : str
         Path to REAPER resource directory. Can be obtained with
-        :func:`renardo_reapy.config.resource_path.get_resource_path`.
+        :func:`runtime.config.resource_path.get_resource_path`.
 
     Returns
     -------
@@ -411,7 +411,7 @@ def web_interface_exists(resource_path, port=WEB_INTERFACE_PORT):
     ----------
     resource_path : str
         Path to REAPER resource directory. Can be obtained with
-        :func:`renardo_reapy.config.resource_path.get_resource_path`.
+        :func:`runtime.config.resource_path.get_resource_path`.
     port : int, optional
         Web interface port. Default=``2307``.
 

@@ -63,7 +63,7 @@ class ReaperConsole:
         pass
 
     def write(self, *args, **kwargs):
-        renardo_reapy.print(*args, **kwargs)
+        runtime.print(*args, **kwargs)
 
 
 def at_exit(f, *args, **kwargs):
@@ -100,9 +100,9 @@ def at_exit(f, *args, **kwargs):
     >>> file = open("somefile.txt", "w")
     >>> def stupid_loop(i):
     ...     file.write(i)
-    ...     renardo_reapy.defer(stupid_loop, i + 1)
+    ...     runtime.defer(stupid_loop, i + 1)
     ...
-    >>> renardo_reapy.at_exit(file.close)
+    >>> runtime.at_exit(file.close)
     >>> stupid_loop(0)
     """
     message = "renardo_reapy.at_exit can only be called inside REAPER."
@@ -143,8 +143,8 @@ def defer(f, *args, **kwargs):
 
     >>> import renardo_reapy.runtime as runtime
     >>> def stupid_loop(i):
-    ...     renardo_reapy.print(i)
-    ...     renardo_reapy.defer(stupid_loop, i + 1)
+    ...     runtime.print(i)
+    ...     runtime.defer(stupid_loop, i + 1)
     ...
     >>> stupid_loop(0)
     """

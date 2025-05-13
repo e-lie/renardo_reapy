@@ -33,11 +33,11 @@ class FXParam(float):
         """
         parent_fx = self.parent_list.parent_fx
         parent = parent_fx.parent
-        if isinstance(parent, renardo_reapy.Track):
+        if isinstance(parent, runtime.Track):
             callback = RPR.GetFXEnvelope
         else:  # Then it is a Take
             callback = self.functions["GetEnvelope"]
-        envelope = renardo_reapy.Envelope(parent, callback(
+        envelope = runtime.Envelope(parent, callback(
             parent.id, parent_fx.index, self.index, True
         ))
         return envelope
@@ -51,11 +51,11 @@ class FXParam(float):
         """
         parent_fx = self.parent_list.parent_fx
         parent = parent_fx.parent
-        if isinstance(parent, renardo_reapy.Track):
+        if isinstance(parent, runtime.Track):
             callback = RPR.GetFXEnvelope
         else:  # Then it is a Take
             callback = self.functions["GetEnvelope"]
-        envelope = renardo_reapy.Envelope(parent, callback(
+        envelope = runtime.Envelope(parent, callback(
             parent.id, parent_fx.index, self.index, False
         ))
         if not envelope._is_defined:
@@ -201,13 +201,13 @@ class FXParamsList(ReapyObjectList):
         self, parent_fx=None, parent_id=None, parent_fx_index=None
     ):
         if parent_fx is None:
-            parent_fx = renardo_reapy.FX(parent_id=parent_id, index=parent_fx_index)
+            parent_fx = runtime.FX(parent_id=parent_id, index=parent_fx_index)
         self.parent_id = parent_fx.parent_id
         self.fx_index = parent_fx.index
         self.functions = parent_fx.functions
 
     def __getitem__(self, i):
-        with renardo_reapy.inside_reaper():
+        with runtime.inside_reaper():
             if isinstance(i, str):
                 i = self._get_param_index(i)
             n_params = len(self)
@@ -231,7 +231,7 @@ class FXParamsList(ReapyObjectList):
         return length
 
     def __setitem__(self, i, value):
-        with renardo_reapy.inside_reaper():
+        with runtime.inside_reaper():
             if isinstance(i, str):
                 i = self._get_param_index(i)
             n_params = len(self)
@@ -275,7 +275,7 @@ class FXParamsList(ReapyObjectList):
 
         :type: FX
         """
-        fx = renardo_reapy.FX(parent_id=self.parent_id, index=self.fx_index)
+        fx = runtime.FX(parent_id=self.parent_id, index=self.fx_index)
         return fx
 
 

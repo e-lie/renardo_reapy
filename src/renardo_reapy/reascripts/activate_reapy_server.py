@@ -29,12 +29,12 @@ def run_main_loop():
     results = SERVER.process_requests(requests)
     SERVER.send_results(results)
     # Run main_loop again
-    renardo_reapy.defer(run_main_loop)
+    runtime.defer(run_main_loop)
 
 
 def get_new_renardo_reapy_server():
-    server_port = renardo_reapy.config.REAPY_SERVER_PORT
-    renardo_reapy.set_ext_state("renardo_reapy", "server_port", server_port)
+    server_port = runtime.config.REAPY_SERVER_PORT
+    runtime.set_ext_state("renardo_reapy", "server_port", server_port)
     server = Server(server_port)
     return server
 
@@ -42,4 +42,4 @@ def get_new_renardo_reapy_server():
 if __name__ == "__main__":
     SERVER = get_new_renardo_reapy_server()
     run_main_loop()
-    renardo_reapy.at_exit(renardo_reapy.delete_ext_state, "renardo_reapy", "server_port")
+    runtime.at_exit(runtime.delete_ext_state, "renardo_reapy", "server_port")

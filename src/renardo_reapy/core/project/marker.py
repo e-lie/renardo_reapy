@@ -18,7 +18,7 @@ class Marker(ReapyObject):
             )
             assert parent_project is not None, message
             parent_project_id = parent_project.id
-        self.project = renardo_reapy.Project(parent_project_id)
+        self.project = runtime.Project(parent_project_id)
         self.project_id = parent_project_id
         if index is None:
             index = len(self.project.markers)

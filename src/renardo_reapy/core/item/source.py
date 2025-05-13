@@ -49,7 +49,7 @@ class Source(ReapyObject):
         pointer, name = self._get_pointer_and_name()
         return any(
             RPR.ValidatePtr2(project.id, pointer, name)
-            for project in renardo_reapy.get_projects()
+            for project in runtime.get_projects()
         )
 
     def length(self, unit="seconds"):

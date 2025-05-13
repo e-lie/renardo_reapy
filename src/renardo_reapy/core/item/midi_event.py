@@ -88,7 +88,7 @@ class MIDIEventList(ReapyObjectList):
         self.parent = parent
 
     def __getitem__(self, key):
-        with renardo_reapy.inside_reaper():
+        with runtime.inside_reaper():
             if key >= len(self):
                 raise IndexError
             return self._elements_class(self.parent, key)

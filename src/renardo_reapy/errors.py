@@ -1,12 +1,14 @@
 """Define custom errors."""
 
+import renardo_reapy.runtime as runtime
+
 
 class DisabledDistAPIError(Exception):
 
     def __init__(self):
         message = (
             "Can't reach distant API. Please start REAPER, or call "
-            "renardo_reapy.config.enable_dist_api() from inside REAPER to enable "
+            "runtime.config.enable_dist_api() from inside REAPER to enable "
             "distant API."
         )
         super().__init__(message)
@@ -17,7 +19,7 @@ class DisabledDistAPIWarning(Warning):
     def __init__(self):
         message = (
             "Can't reach distant API. Please start REAPER, or call "
-            "renardo_reapy.config.enable_dist_api() from inside REAPER to enable "
+            "runtime.config.enable_dist_api() from inside REAPER to enable "
             "distant API."
         )
         super().__init__(message)

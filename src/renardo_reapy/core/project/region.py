@@ -26,7 +26,7 @@ class Region(ReapyObject):
         Return region index as needed by RPR.EnumProjectMarkers2.
         """
         return next(
-            i for i, r in enumerate(renardo_reapy.Project(self.project_id).regions)
+            i for i, r in enumerate(runtime.Project(self.project_id).regions)
             if r.index == self.index
         )
 
@@ -152,7 +152,7 @@ class Region(ReapyObject):
             track_id = RPR.EnumRegionRenderMatrix(
                 self.project_id, self.index, i
             )
-            tracks.append(renardo_reapy.Track(track_id))
+            tracks.append(runtime.Track(track_id))
             i += 1
         return tracks[:-1]
 

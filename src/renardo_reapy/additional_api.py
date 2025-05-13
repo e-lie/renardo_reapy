@@ -1,6 +1,6 @@
 """Fix several ReaScript API bugs.
 
-All fixes will be applied to `renardo_reapy.reascript_api` by reapy during
+All fixes will be applied to `runtime.reascript_api` by reapy during
 the import process. Thus, this module is only intended to be used
 internally and should not be directly used by end-users.
 """

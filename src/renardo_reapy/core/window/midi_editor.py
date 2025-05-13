@@ -129,4 +129,4 @@ class MIDIEditor(Window):
 
         :type: Take
         """
-        return renardo_reapy.Take(RPR.MIDIEditor_GetTake(self.id))
+        return runtime.Take(RPR.MIDIEditor_GetTake(self.id))
