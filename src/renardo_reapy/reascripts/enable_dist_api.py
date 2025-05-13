@@ -9,5 +9,5 @@ the latter **via** the Web Interface.
 """
 
 if __name__ == "__main__":
-    import renardo_reapy.runtime
+    import renardo_reapy.runtime as runtime
     renardo_reapy.config.enable_dist_api()

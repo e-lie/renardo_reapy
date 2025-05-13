@@ -12,11 +12,11 @@ import site
 import sys
 
 try:
-    import renardo_reapy.runtime
+    import renardo_reapy.runtime as runtime
 except ImportError:
     reapy_path = pathlib.Path(sys.path[0]).resolve().parent.parent
     sys.path.append(str(reapy_path))
-    import renardo_reapy.runtime
+    import renardo_reapy.runtime as runtime
 
 from renardo_reapy.tools.network import Server
 

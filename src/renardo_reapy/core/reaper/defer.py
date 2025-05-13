@@ -96,7 +96,7 @@ def at_exit(f, *args, **kwargs):
     to be closed when the user terminates script execution, call to
     its ``close`` method is deferred to ``renardo_reapy.at_exit``.
 
-    >>> import renardo_reapy.runtime
+    >>> import renardo_reapy.runtime as runtime
     >>> file = open("somefile.txt", "w")
     >>> def stupid_loop(i):
     ...     file.write(i)
@@ -141,7 +141,7 @@ def defer(f, *args, **kwargs):
     The following example creates a loop that indefinitely prints
     integers to the REAPER console, without blocking REAPER GUI.
 
-    >>> import renardo_reapy.runtime
+    >>> import renardo_reapy.runtime as runtime
     >>> def stupid_loop(i):
     ...     renardo_reapy.print(i)
     ...     renardo_reapy.defer(stupid_loop, i + 1)

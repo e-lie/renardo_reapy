@@ -44,7 +44,7 @@ RPR_ShowConsoleMsg("Hello world!")
 you can open your usual Python shell and type:
 
 ```python
->>> import renardo_reapy.runtime
+>>> import renardo_reapy.runtime as runtime
 >>> renardo_reapy.print("Hello world!")
 ```
 
@@ -70,7 +70,7 @@ Note that if you have the [SWS extension](http://sws-extension.org/) installed, 
 The purpose of `renardo_reapy` is to provide a more pythonic API as a substitute for ReaScript API. Below is the `renardo_reapy` way of executing the example above.
 
 ```python
->>> import renardo_reapy.runtime
+>>> import renardo_reapy.runtime as runtime
 >>> project = renardo_reapy.Project() # Current project
 >>> project.cursor_position
 0.0
@@ -85,7 +85,7 @@ The translation table matches ReaScript functions with their `renardo_reapy` cou
 When used from inside REAPER, `renardo_reapy` has almost identical performance than native ReaScript API. Yet when it is used from the outside, the performance is quite worse. More precisely, since external API calls are processed in a `defer` loop inside REAPER, there can only be around 30 to 60 of them per second. In a time-critical context, you should make use of the `renardo_reapy.inside_reaper` context manager.
 
 ```python
->>> import renardo_reapy.runtime
+>>> import renardo_reapy.runtime as runtime
 >>> project = renardo_reapy.Project() # Current project
 >>> # Unefficient (and useless) call
 >>> bpms = [project.bpm for _ in range(1000)] # Takes at least 30 seconds...

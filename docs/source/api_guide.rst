@@ -17,7 +17,7 @@ The top-level package ``reapy`` includes general purpose functions that act at t
 
 All functions in `renardo_reapy.core.reaper.reaper <renardo_reapy.core.reaper.html#module-renardo_reapy.core.reaper.reaper>`_ are imported at the top-level, which means you can call ``renardo_reapy.function`` for any function ``function`` in this module.
 
-    >>> import renardo_reapy.runtime
+    >>> import renardo_reapy.runtime as runtime
     >>> renardo_reapy.print("Hello world!")
     >>> renardo_reapy.clear_console()
     >>> renardo_reapy.get_reaper_version()
@@ -35,7 +35,7 @@ Improve performance with ``renardo_reapy.inside_reaper``
 When used from inside REAPER, ``reapy`` has almost identical performance than native ReaScript API. Yet when it is used from the outside, the performance is quite worse. More precisely, since external API calls are processed in a ``defer`` loop inside REAPER, there can only be around 30 to 60 of them per second. In a time-critical context, you should make use of the ``renardo_reapy.inside_reaper`` context manager.
 
 
-    >>> import renardo_reapy.runtime
+    >>> import renardo_reapy.runtime as runtime
     >>> project = renardo_reapy.Project() # Current project
     >>>
     >>> # Unefficient (and useless) call
@@ -69,7 +69,7 @@ Here is what ``renardo_reapy.defer`` does:
 
 REAPER typically executes around 30 deferred calls per second. The following example creates a loop that indefinitely prints integers to the REAPER console, without blocking REAPER::
 
-    import renardo_reapy.runtime
+    import renardo_reapy.runtime as runtime
         
     def stupid_loop(i):
         renardo_reapy.print(i)
@@ -82,7 +82,7 @@ When such a loop is running, the user might terminate it at some point, maybe by
 
 The following example opens a file and starts a loop that indefinitely writes integers to that file. Since we want the file to be closed when the user terminates script execution, call to its ``close`` method is deferred to ``renardo_reapy.at_exit``::
 
-    import renardo_reapy.runtime
+    import renardo_reapy.runtime as runtime
     
     file = open("somefile.txt", "w")
     

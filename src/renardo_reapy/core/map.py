@@ -51,7 +51,7 @@ def map(function, *iterables, constants={}, kwargs_iterable=None):
     by 95%.
 
     >>> import time
-    >>> import renardo_reapy.runtime
+    >>> import renardo_reapy.runtime as runtime
     >>>
     >>> project = renardo_reapy.Project()
     >>> take = project.items[0].active_take

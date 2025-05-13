@@ -12,5 +12,5 @@ renardo_reapy.reascripts.enable_dist_api
 """
 
 if __name__ == "__main__":
-    import renardo_reapy.runtime
+    import renardo_reapy.runtime as runtime
     renardo_reapy.config.disable_dist_api()
