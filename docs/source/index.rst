@@ -39,7 +39,7 @@ Usage
 
 you can open your usual Python shell and type::
 
-    >>> import renardo_reapy
+    >>> import renardo_reapy.runtime
     >>> renardo_reapy.print("Hello world!")
 
 ReaScript API
@@ -60,7 +60,7 @@ All ReaScript API functions are available in ``renardo_reapy`` in the sub-module
 
 The purpose of ``renardo_reapy`` is to provide a more pythonic API as a substitute for ReaScript API. Below is the ``renardo_reapy`` way of executing the example above::
 
-    >>> import renardo_reapy
+    >>> import renardo_reapy.runtime
     >>> project = renardo_reapy.Project() # current project
     >>> project.cursor_position
     0.0
@@ -76,7 +76,7 @@ Performance
 When used from inside REAPER, ``renardo_reapy`` has almost identical performance than native ReaScript API. Yet when it is used from the outside, the performance is quite worse. More precisely, since external API calls are processed in a ``defer`` loop inside REAPER, there can only be around 30 to 60 of them per second. In a time-critical context, you should make use of the ``renardo_reapy.inside_reaper`` context manager.
 
 
-    >>> import renardo_reapy
+    >>> import renardo_reapy.runtime
     >>> project = renardo_reapy.Project() # Current project
     >>>
     >>> # Unefficient (and useless) call

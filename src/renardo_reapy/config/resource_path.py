@@ -3,13 +3,13 @@
 import os
 import sys
 
-import renardo_reapy
+import renardo_reapy.runtime
 from .shared_library import is_windows, is_apple
+from renardo_reapy.inside_reaper import is_inside_reaper
 
-if not renardo_reapy.is_inside_reaper():
+if not is_inside_reaper():
     # Third-party imports crash REAPER when run inside it.
     import psutil
-
 
 def get_candidate_directories(detect_portable_install=True):
     if detect_portable_install:

@@ -5,8 +5,8 @@ import typing as ty
 from builtins import BaseException
 from types import TracebackType
 
-import renardo_reapy
-import renardo_reapy.config
+import renardo_reapy.runtime
+import renardo_reapy.runtime.config
 from renardo_reapy import errors
 from . import client, web_interface
 
@@ -38,7 +38,7 @@ def reconnect() -> None:
     Examples
     --------
     Assume no REAPER instance is active.
-    >>> import renardo_reapy
+    >>> import renardo_reapy.runtime
     errors.DisabledDistAPIWarning: Can't reach distant API. Please start REAPER, or
     call renardo_reapy.config.enable_dist_api() from inside REAPER to enable distant
     API.

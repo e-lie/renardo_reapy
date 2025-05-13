@@ -9,7 +9,7 @@ import shutil
 import string
 import warnings
 
-import renardo_reapy
+import renardo_reapy.runtime
 from renardo_reapy.errors import OutsideREAPERError
 from renardo_reapy.reascripts import activate_reapy_server
 from .resource_path import get_resource_path
@@ -44,6 +44,7 @@ class CaseInsensitiveDict(OrderedDict):
             self._dict[key.lower()] = value
 
     def __contains__(self, key):
+        print(type(key))
         return key.lower() in self._dict
 
     def __getitem__(self, key):
@@ -326,7 +327,7 @@ def enable_dist_api():
     renardo_reapy.set_ext_state(section, key, value, persist=True)
     message = (
         "renardo_reapy successfully enabled!\n\nPlease restart REAPER.\n\nYou will "
-        "then be able to import renardo_reapy from the outside."
+        "then be able to import renardo_reapy.runtime from the outside."
     )
     renardo_reapy.show_message_box(message)
 

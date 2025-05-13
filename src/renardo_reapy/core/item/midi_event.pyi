@@ -1,5 +1,5 @@
-import renardo_reapy
-import renardo_reapy.reascript_api as RPR
+import renardo_reapy.runtime
+import renardo_reapy.runtime.reascript_api as RPR
 from renardo_reapy.core import ReapyObject, ReapyObjectList
 import typing as ty
 import typing_extensions as te

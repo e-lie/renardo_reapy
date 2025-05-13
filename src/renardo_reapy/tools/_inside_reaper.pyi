@@ -2,8 +2,8 @@ import contextlib
 import functools
 import typing as ty
 
-import renardo_reapy
-import renardo_reapy.config
+import renardo_reapy.runtime
+import renardo_reapy.runtime.config
 from renardo_reapy.errors import DisabledDistAPIError, DisabledDistAPIWarning
 if not renardo_reapy.is_inside_reaper():
     try:
@@ -100,7 +100,7 @@ def reconnect() -> None:
     Examples
     --------
     Assume no REAPER instance is active.
-    >>> import renardo_reapy
+    >>> import renardo_reapy.runtime
     DisabledDistAPIWarning: Can't reach distant API. Please start REAPER, or
     call renardo_reapy.config.enable_dist_api() from inside REAPER to enable distant
     API.

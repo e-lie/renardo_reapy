@@ -2,7 +2,7 @@ import importlib
 import sys
 import warnings
 
-import renardo_reapy
+import renardo_reapy.runtime
 import renardo_reapy.config
 from renardo_reapy import errors
 from . import client, web_interface
@@ -35,7 +35,7 @@ def reconnect():
     Examples
     --------
     Assume no REAPER instance is active.
-    >>> import renardo_reapy
+    >>> import renardo_reapy.runtime
     errors.DisabledDistAPIWarning: Can't reach distant API. Please start REAPER, or
     call renardo_reapy.config.enable_dist_api() from inside REAPER to enable distant
     API.

@@ -1,6 +1,6 @@
 """Define Server class."""
 
-import renardo_reapy
+import renardo_reapy.runtime
 from renardo_reapy.tools import json
 from .socket import Socket
 

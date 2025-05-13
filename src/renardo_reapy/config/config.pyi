@@ -1,4 +1,4 @@
-import renardo_reapy
+import renardo_reapy.runtime
 from renardo_reapy.errors import OutsideREAPERError
 from renardo_reapy.reascripts import activate_reapy_server
 

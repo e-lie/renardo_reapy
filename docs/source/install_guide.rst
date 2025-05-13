@@ -18,7 +18,7 @@ One additional step is required to let REAPER know renardo_reapy is available. F
 
 .. code-block:: bash
 
-    $ python -c "import renardo_reapy; renardo_reapy.configure_reaper()"
+    $ python -c "import renardo_reapy.runtime; renardo_reapy.configure_reaper()"
 
 Now restart REAPER, and you're all set!
 
@@ -75,12 +75,12 @@ REAPER has to be configured to be able to use renardo_reapy. First, open REAPER,
 
 .. code-block:: bash
 
-    py -c "import renardo_reapy; renardo_reapy.configure_reaper()"
+    py -c "import renardo_reapy.runtime; renardo_reapy.configure_reaper()"
 
 (MacOS/Linux)
 
 .. code-block:: bash
 
-    python -c "import renardo_reapy; renardo_reapy.configure_reaper()"
+    python -c "import renardo_reapy.runtime; renardo_reapy.configure_reaper()"
 
 Finally, restart REAPER and you're good to go!

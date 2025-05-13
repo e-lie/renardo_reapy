@@ -1,4 +1,4 @@
-import renardo_reapy
+import renardo_reapy.runtime
 from renardo_reapy import reascript_api as RPR
 from renardo_reapy.core import ReapyObject, ReapyObjectList
 from renardo_reapy.errors import UndefinedEnvelopeError

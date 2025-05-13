@@ -2,8 +2,8 @@
 Build ``docs/source/api_table.rst`` from ``docs/api.json``.
 """
 
-import renardo_reapy
-import renardo_reapy.core
+import renardo_reapy.runtime
+import renardo_reapy.runtime.core
 
 from collections import defaultdict
 import inspect

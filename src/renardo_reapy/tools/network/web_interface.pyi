@@ -3,7 +3,7 @@ from renardo_reapy.tools import json
 from urllib import request
 from urllib.error import URLError
 
-import renardo_reapy
+import renardo_reapy.runtime
 import typing as ty
 
 
