@@ -1,4 +1,4 @@
-import renardo_reapy.runtime
+import renardo_reapy.runtime as runtime
 from renardo_reapy.tools import json
 
 import sys

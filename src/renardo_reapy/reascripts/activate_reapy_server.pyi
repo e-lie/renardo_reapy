@@ -7,7 +7,7 @@ automatically be run when importing ``reapy`` from outside, if it is
 enabled.
 """
 
-import renardo_reapy.runtime
+import renardo_reapy.runtime as runtime
 
 import os
 import site

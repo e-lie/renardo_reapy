@@ -3,7 +3,7 @@
 import os
 import sys
 
-import renardo_reapy.runtime
+import renardo_reapy.runtime as runtime
 from .shared_library import is_windows, is_apple
 from renardo_reapy.inside_reaper import is_inside_reaper
 

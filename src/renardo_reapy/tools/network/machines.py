@@ -2,7 +2,7 @@ import importlib
 import sys
 import warnings
 
-import renardo_reapy.runtime
+import renardo_reapy.runtime as runtime
 import renardo_reapy.config
 from renardo_reapy import errors
 from . import client, web_interface

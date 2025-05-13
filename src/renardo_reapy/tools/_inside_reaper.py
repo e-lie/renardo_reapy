@@ -2,7 +2,7 @@ import contextlib
 import functools
 import importlib
 
-import renardo_reapy.runtime
+import renardo_reapy.runtime as runtime
 import renardo_reapy.config
 from renardo_reapy.inside_reaper import is_inside_reaper
 from renardo_reapy.errors import DisabledDistAPIError, DisabledDistAPIWarning

@@ -8,7 +8,7 @@ internally and should not be directly used by end-users.
 import ctypes as ct
 import re
 
-import renardo_reapy.runtime
+import renardo_reapy.runtime as runtime
 from renardo_reapy.reascript_api import _RPR
 
 

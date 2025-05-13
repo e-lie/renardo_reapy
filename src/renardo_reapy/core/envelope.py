@@ -1,6 +1,6 @@
 import warnings
 
-import renardo_reapy.runtime
+import renardo_reapy.runtime as runtime
 from renardo_reapy import reascript_api as RPR
 from renardo_reapy.core import ReapyObject
 from renardo_reapy.tools import inside_reaper

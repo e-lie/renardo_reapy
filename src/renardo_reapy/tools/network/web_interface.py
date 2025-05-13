@@ -4,7 +4,7 @@ from urllib import request
 from urllib.error import URLError
 from socket import timeout
 
-import renardo_reapy.runtime
+import renardo_reapy.runtime as runtime
 
 
 class WebInterface:

@@ -5,7 +5,7 @@ import typing as ty
 from builtins import BaseException
 from types import TracebackType
 
-import renardo_reapy.runtime
+import renardo_reapy.runtime as runtime
 import renardo_reapy.runtime.config
 from renardo_reapy import errors
 from . import client, web_interface

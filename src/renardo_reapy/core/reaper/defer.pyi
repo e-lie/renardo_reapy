@@ -1,6 +1,6 @@
 """Define renardo_reapy.defer and renardo_reapy.at_exit."""
 
-import renardo_reapy.runtime
+import renardo_reapy.runtime as runtime
 
 import os
 import sys

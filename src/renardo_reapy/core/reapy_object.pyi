@@ -1,4 +1,4 @@
-import renardo_reapy.runtime
+import renardo_reapy.runtime as runtime
 import typing as ty
 from typing_extensions import TypedDict
 

@@ -2,7 +2,7 @@ import contextlib
 import functools
 import typing as ty
 
-import renardo_reapy.runtime
+import renardo_reapy.runtime as runtime
 import renardo_reapy.runtime.config
 from renardo_reapy.errors import DisabledDistAPIError, DisabledDistAPIWarning
 if not is_inside_reaper():

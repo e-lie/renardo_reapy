@@ -1,4 +1,4 @@
-import renardo_reapy.runtime
+import renardo_reapy.runtime as runtime
 import renardo_reapy.reascript_api as RPR
 from .window import Window
 
