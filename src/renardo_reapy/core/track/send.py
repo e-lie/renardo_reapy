@@ -60,8 +60,8 @@ class Send(ReapyObject):
         :type: Track
         """
         pointer = self.get_info('P_DESTTRACK')
-        track_id = renardo_reapy.Track._get_id_from_pointer(pointer)
-        return renardo_reapy.Track(track_id)
+        track_id = runtime.Track._get_id_from_pointer(pointer)
+        return runtime.Track(track_id)
 
     @inside_reaper()
     def flip_phase(self):
@@ -313,8 +313,8 @@ class Send(ReapyObject):
         :type: Track
         """
         pointer = self.get_info('P_SRCTRACK')
-        track_id = renardo_reapy.Track._get_id_from_pointer(pointer)
-        return renardo_reapy.Track(track_id)
+        track_id = runtime.Track._get_id_from_pointer(pointer)
+        return runtime.Track(track_id)
 
     def unmute(self):
         """

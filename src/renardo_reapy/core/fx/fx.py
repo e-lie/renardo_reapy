@@ -33,7 +33,7 @@ class FX(ReapyObject):
         self.functions = self._get_functions()
 
     def _get_functions(self):
-        if isinstance(self.parent, renardo_reapy.Track):
+        if isinstance(self.parent, runtime.Track):
             type = "TrackFX_"
         else:
             type = "TakeFX_"
@@ -275,7 +275,7 @@ class FX(ReapyObject):
 
         :type: FXParamsList
         """
-        params = renardo_reapy.FXParamsList(self)
+        params = runtime.FXParamsList(self)
         return params
 
     @property
@@ -286,8 +286,8 @@ class FX(ReapyObject):
         :type: Track or Take
         """
         if self.parent_id.startswith("(MediaTrack*)"):
-            return renardo_reapy.Track(self.parent_id)
-        return renardo_reapy.Take(self.parent_id)
+            return runtime.Track(self.parent_id)
+        return runtime.Take(self.parent_id)
 
     @property
     def preset(self):
@@ -365,7 +365,7 @@ class FX(ReapyObject):
 
         :type: Window or NoneType
         """
-        window = renardo_reapy.Window(
+        window = runtime.Window(
             self.functions["GetFloatingWindow"](self.parent.id, self.index)
         )
         if not window._is_defined:
@@ -405,7 +405,7 @@ class FXList(ReapyObjectList):
     def __getitem__(self, i):
         if isinstance(i, slice):
             return self._get_items_from_slice(i)
-        with renardo_reapy.inside_reaper():
+        with runtime.inside_reaper():
             if isinstance(i, str):
                 i = self._get_fx_index(name=i)
             n_fxs = self.parent.n_fxs
@@ -425,7 +425,7 @@ class FXList(ReapyObjectList):
 
     def _get_fx_index(self, name):
         name = name[name.find(': ') + 2:]  # Remove FX type prefix
-        if isinstance(self.parent, renardo_reapy.Track):
+        if isinstance(self.parent, runtime.Track):
             prefix = "TrackFX_"
             args = (self.parent.id, name, False, 0)
         else:
