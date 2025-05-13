@@ -1,5 +1,5 @@
 import renardo_reapy.runtime
-import renardo_reapy.runtime.reascript_api as RPR
+import renardo_reapy.reascript_api as RPR
 from renardo_reapy.core import ReapyObject, ReapyObjectList
 from renardo_reapy.errors import DistError
 import typing as ty
@@ -188,11 +188,11 @@ class FXParamsList(ReapyObjectList):
     def __setitem__(self, i: ty.Union[str, int], value: float) -> None:
         ...
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def _get_param_index(self, name: str) -> int:
         ...
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def _get_values(self) -> ty.List[float]:
         """Return values of all parameters in self."""
         ...

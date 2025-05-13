@@ -272,7 +272,7 @@ def MIDI_SetTextSysexEvt(
     )
 
 
-@renardo_reapy.inside_reaper()
+@inside_reaper()
 def ValidatePtr2(p0, p1, p2):
     a = _RPR._ft["ValidatePtr2"]
     f = ct.CFUNCTYPE(ct.c_byte, ct.c_uint64, ct.c_uint64, ct.c_char_p)(a)

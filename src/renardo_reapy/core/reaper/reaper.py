@@ -1,5 +1,6 @@
 import renardo_reapy.runtime
-import renardo_reapy.runtime.reascript_api as RPR
+import renardo_reapy.reascript_api as RPR
+from renardo_reapy.tools import inside_reaper
 import contextlib
 from .defer import ReaperConsole
 
@@ -320,7 +321,7 @@ def get_main_window():
     return window
 
 
-@renardo_reapy.inside_reaper()
+@inside_reaper()
 def get_projects():
     """
     Return list of all opened projects.
@@ -408,7 +409,7 @@ def has_ext_state(section, key):
     return has_ext_state
 
 
-@renardo_reapy.inside_reaper()
+@inside_reaper()
 def open_project(filepath, in_new_tab=False, make_current_project=True):
     """
     Open project and return it.

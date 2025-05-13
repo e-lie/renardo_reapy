@@ -1,5 +1,5 @@
 import renardo_reapy.runtime
-import renardo_reapy.runtime.reascript_api as RPR
+import renardo_reapy.reascript_api as RPR
 import typing as ty
 
 
@@ -15,7 +15,7 @@ def get_active_editor() -> ty.Optional[renardo_reapy.MIDIEditor]:
     ...
 
 
-@renardo_reapy.inside_reaper()
+@inside_reaper()
 def get_input_names() -> ty.List[str]:
     """
     Return names of all input channels.
@@ -76,7 +76,7 @@ def get_n_outputs() -> int:
     ...
 
 
-@renardo_reapy.inside_reaper()
+@inside_reaper()
 def get_output_names() -> ty.List[str]:
     """
     Return names of all output channels.

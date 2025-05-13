@@ -1,6 +1,7 @@
 import renardo_reapy.runtime
 from renardo_reapy import reascript_api as RPR
 from renardo_reapy.core import ReapyObject
+from renardo_reapy.tools import inside_reaper
 
 
 class Marker(ReapyObject):
@@ -23,7 +24,7 @@ class Marker(ReapyObject):
             index = len(self.project.markers)
         self.index = index
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def _get_enum_index(self):
         """
         Return marker index as needed by RPR.EnumProjectMarkers2.
@@ -44,7 +45,7 @@ class Marker(ReapyObject):
         """
         RPR.DeleteProjectMarker(self.project_id, self.index, False)
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def position(self):
         """

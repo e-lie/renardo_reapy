@@ -1,7 +1,7 @@
 import renardo_reapy.runtime
 from renardo_reapy import reascript_api as RPR
 from renardo_reapy.core import ReapyObject
-
+from renardo_reapy.tools import inside_reaper
 
 class TimeSelection(ReapyObject):
 
@@ -46,7 +46,7 @@ class TimeSelection(ReapyObject):
     def _kwargs(self):
         return {"parent_project_id": self.project_id}
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def end(self):
         """
@@ -101,7 +101,7 @@ class TimeSelection(ReapyObject):
         else:
             self.unloop()
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def length(self):
         """
@@ -144,7 +144,7 @@ class TimeSelection(ReapyObject):
         """
         RPR.GetSetRepeatEx(self.project_id, 1)
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def start(self):
         """

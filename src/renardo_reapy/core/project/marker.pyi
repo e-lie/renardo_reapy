@@ -17,7 +17,7 @@ class Marker(ReapyObject):
                  parent_project_id: ty.Optional[int] = None):
         ...
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def _get_enum_index(self) -> int:
         """
         Return marker index as needed by RPR.EnumProjectMarkers2.

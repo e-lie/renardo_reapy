@@ -1,6 +1,7 @@
 import renardo_reapy.runtime
 from renardo_reapy import reascript_api as RPR
 from renardo_reapy.core import ReapyObject
+from renardo_reapy.tools import inside_reaper
 
 
 class Take(ReapyObject):
@@ -30,7 +31,7 @@ class Take(ReapyObject):
         audio_accessor = renardo_reapy.AudioAccessor(audio_accessor_id)
         return audio_accessor
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def add_event(self, message, position, unit="seconds"):
         """
         Add generic event to the take at position.
@@ -93,7 +94,7 @@ class Take(ReapyObject):
         fx = renardo_reapy.FX(self, index)
         return fx
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def add_note(
         self, start, end, pitch, velocity=100, channel=0, selected=False,
         muted=False, unit="seconds", sort=True
@@ -140,7 +141,7 @@ class Take(ReapyObject):
         )
         RPR.MIDI_InsertNote(*args)
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def add_sysex(self, message, position, unit="seconds", evt_type=-1):
         """
         Add SysEx event to take.
@@ -218,7 +219,7 @@ class Take(ReapyObject):
     def get_info_value(self, param_name):
         return RPR.GetMediaItemTakeInfo_Value(self.id, param_name)
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def has_valid_id(self):
         """
@@ -236,7 +237,7 @@ class Take(ReapyObject):
         pointer, name = self._get_pointer_and_name()
         return bool(RPR.ValidatePtr2(project_id, pointer, name))
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def is_active(self):
         """
@@ -431,7 +432,7 @@ class Take(ReapyObject):
         time = RPR.MIDI_GetProjTimeFromPPQPos(self.id, ppq)
         return time
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def project(self):
         """
@@ -441,7 +442,7 @@ class Take(ReapyObject):
         """
         return self.item.project
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def _resolve_midi_unit(self, pos_tuple, unit="seconds"):
         """Get positions as ppq from tuple of positions of any length.
 

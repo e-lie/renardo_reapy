@@ -51,7 +51,7 @@ class Envelope(ReapyObject):
         """
         ...
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def get_derivatives(self, time: float,
                         raw: bool = False) -> ty.Tuple[float, float, float]:
         """
@@ -80,7 +80,7 @@ class Envelope(ReapyObject):
         """
         ...
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def get_value(self, time: float,
                   raw: bool = False) -> ty.Union[float, str]:
         """

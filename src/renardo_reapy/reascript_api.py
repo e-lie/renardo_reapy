@@ -1,4 +1,4 @@
-import renardo_reapy.runtime
+import renardo_reapy.runtime as runtime
 from renardo_reapy.tools import json, inside_reaper
 from renardo_reapy.inside_reaper import is_inside_reaper
 
@@ -33,10 +33,10 @@ if is_inside_reaper():
     except ImportError:  # SWS is not installed
         pass
 else:
-    if renardo_reapy.dist_api_is_enabled():
+    if runtime.dist_api_is_enabled():
         __all__ = _get_api_names()
         func_def = (
-            "@renardo_reapy.inside_reaper()\n"
+            "@inside_reaper()\n"
             "def {name}(*args): return (name)(*args)"
         )
         exec("\n".join(func_def.format(name=name) for name in __all__))

@@ -53,7 +53,7 @@ class Send(ReapyObject):
         """
         ...
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def flip_phase(self) -> None:
         """
         Toggle whether phase is flipped.

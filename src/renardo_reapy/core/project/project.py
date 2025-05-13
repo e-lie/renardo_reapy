@@ -8,7 +8,7 @@ import renardo_reapy.runtime
 from renardo_reapy import reascript_api as RPR
 from renardo_reapy.core import ReapyObject
 from renardo_reapy.errors import RedoError, UndoError
-
+from renardo_reapy.tools import inside_reaper
 
 class Project(ReapyObject):
 
@@ -78,7 +78,7 @@ class Project(ReapyObject):
                     return project
         raise NameError('"{}" is not currently open.'.format(name))
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def _get_track_by_name(self, name):
         """Return first track with matching name."""
         for track in self.tracks:
@@ -148,7 +148,7 @@ class Project(ReapyObject):
         region = renardo_reapy.Region(self, region_id)
         return region
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def add_track(self, index=0, name=""):
         """
         Add track at a specified index.
@@ -227,7 +227,7 @@ class Project(ReapyObject):
         """
         return self.time_signature[1]
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def bpm(self):
         """
@@ -263,7 +263,7 @@ class Project(ReapyObject):
         """
         return RPR.GetPlayPosition2Ex(self.id)
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def bypass_fx_on_all_tracks(self, bypass=True):
         """
         Bypass or un-bypass FX on all tracks.
@@ -332,7 +332,7 @@ class Project(ReapyObject):
         """
         RPR.SetEditCurPos(position, True, True)
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def disarm_rec_on_all_tracks(self):
         """
         Disarm record on all tracks.
@@ -351,7 +351,7 @@ class Project(ReapyObject):
         """
         RPR.Undo_EndBlock2(self.id, description, 0)
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def focused_fx(self):
         """
@@ -587,7 +587,7 @@ class Project(ReapyObject):
         """
         return bool(RPR.GetPlayStateEx(self.id) & 4)
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def is_stopped(self):
         """
@@ -597,7 +597,7 @@ class Project(ReapyObject):
         """
         return not self.is_playing and not self.is_paused
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def items(self):
         """
@@ -619,7 +619,7 @@ class Project(ReapyObject):
         length = RPR.GetProjectLength(self.id)
         return length
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def last_touched_fx(self):
         """
@@ -679,7 +679,7 @@ class Project(ReapyObject):
         """
         RPR.MarkProjectDirty(self.id)
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def markers(self):
         """
@@ -704,7 +704,7 @@ class Project(ReapyObject):
         master_track = renardo_reapy.Track(track_id)
         return master_track
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def mute_all_tracks(self, mute=True):
         """
         Mute or unmute all tracks.
@@ -881,7 +881,7 @@ class Project(ReapyObject):
         play_rate = RPR.Master_GetPlayRate(self.id)
         return play_rate
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def record(self):
         """Hit record button."""
         with self.make_current_project():
@@ -900,7 +900,7 @@ class Project(ReapyObject):
         if not success:
             raise RedoError
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def regions(self):
         """
@@ -958,7 +958,7 @@ class Project(ReapyObject):
         envelope = None if envelope_id == 0 else renardo_reapy.Envelope(envelope_id)
         return envelope
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def selected_items(self):
         """
@@ -976,7 +976,7 @@ class Project(ReapyObject):
             for i in range(self.n_selected_items)
         ]
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def selected_tracks(self):
         """
@@ -1091,7 +1091,7 @@ class Project(ReapyObject):
             raise ValueError(message.format(len(value)))
         RPR.SetProjExtState(self.id, section, key, value)
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def solo_all_tracks(self):
         """
         Solo all tracks in project.
@@ -1109,7 +1109,7 @@ class Project(ReapyObject):
         """
         RPR.OnStopButtonEx(self.id)
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def time_selection(self):
         """
@@ -1214,7 +1214,7 @@ class Project(ReapyObject):
         """Unselect all tracks."""
         self.perform_action(40297)
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def unsolo_all_tracks(self):
         """
         Unsolo all tracks in project.
@@ -1235,7 +1235,7 @@ class _MakeCurrentProject:
         self.current_project = self._make_current_project(project)
 
     @staticmethod
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def _make_current_project(project):
         """Set current project and return the previous current project."""
         current_project = renardo_reapy.Project()

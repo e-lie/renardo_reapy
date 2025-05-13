@@ -4,6 +4,7 @@ import renardo_reapy.runtime
 from renardo_reapy import reascript_api as RPR
 from renardo_reapy.core import ReapyObject, ReapyObjectList
 from renardo_reapy.errors import DistError, UndefinedFXParamError
+from renardo_reapy.tools import inside_reaper
 
 
 class FX(ReapyObject):
@@ -395,7 +396,7 @@ class FXList(ReapyObjectList):
     def __init__(self, parent):
         self.parent = parent
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def __delitem__(self, key):
         fxs = self[key] if isinstance(key, slice) else [self[key]]
         for fx in fxs:
@@ -417,7 +418,7 @@ class FXList(ReapyObjectList):
     def __len__(self):
         return self.parent.n_fxs
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def _get_items_from_slice(self, slice):
         indices = range(*slice.indices(len(self)))
         return [self[i] for i in indices]

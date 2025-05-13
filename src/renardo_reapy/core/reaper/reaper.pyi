@@ -1,5 +1,5 @@
 import renardo_reapy.runtime
-import renardo_reapy.runtime.reascript_api as RPR
+import renardo_reapy.reascript_api as RPR
 import contextlib
 from .defer import ReaperConsole
 
@@ -261,7 +261,7 @@ def get_main_window() -> renardo_reapy.Window:
     ...
 
 
-@renardo_reapy.inside_reaper()
+@inside_reaper()
 def get_projects() -> ty.List[renardo_reapy.Project]:
     """
     Return list of all opened projects.

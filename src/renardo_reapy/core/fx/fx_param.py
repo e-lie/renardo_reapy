@@ -1,7 +1,8 @@
 import renardo_reapy.runtime
-import renardo_reapy.runtime.reascript_api as RPR
+import renardo_reapy.reascript_api as RPR
 from renardo_reapy.core import ReapyObject, ReapyObjectList
 from renardo_reapy.errors import DistError
+from renardo_reapy.tools import inside_reaper
 
 
 class FXParam(float):
@@ -243,7 +244,7 @@ class FXParamsList(ReapyObjectList):
             self.parent_id, self.fx_index, i, value
         )
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def _get_param_index(self, name):
         try:
             return [fx.name for fx in self].index(name)
@@ -252,7 +253,7 @@ class FXParamsList(ReapyObjectList):
                 "{} has no param named {}".format(self.parent_fx, name)
             )
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def _get_values(self):
         """Return values of all parameters in self."""
         return [

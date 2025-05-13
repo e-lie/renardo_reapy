@@ -2,9 +2,10 @@ import builtins
 import functools
 
 import renardo_reapy.runtime
+from renardo_reapy.tools import inside_reaper
 
 
-@renardo_reapy.inside_reaper()
+@inside_reaper()
 def map(function, *iterables, constants={}, kwargs_iterable=None):
     """Efficiently map a function to iterables of arguments.
 

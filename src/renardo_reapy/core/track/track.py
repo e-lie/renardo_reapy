@@ -2,7 +2,7 @@ import renardo_reapy.runtime
 from renardo_reapy import reascript_api as RPR
 from renardo_reapy.core import ReapyObject, ReapyObjectList
 from renardo_reapy.errors import InvalidObjectError, UndefinedEnvelopeError
-
+from renardo_reapy.tools import inside_reaper
 
 class Track(ReapyObject):
 
@@ -68,7 +68,7 @@ class Track(ReapyObject):
     def _get_id_from_pointer(cls, pointer):
         return '(MediaTrack*)0x{0:0{1}X}'.format(int(pointer), 16)
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def _get_project(self):
         """
         Return parent project of track.
@@ -128,7 +128,7 @@ class Track(ReapyObject):
         fx = renardo_reapy.FX(self, index)
         return fx
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def add_item(self, start=0, end=None, length=0):
         """
         Create new item on track and return it.
@@ -316,7 +316,7 @@ class Track(ReapyObject):
     def GUID(self, guid_string):
         self.set_info_string("GUID", guid_string)
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def has_valid_id(self):
         """
@@ -380,7 +380,7 @@ class Track(ReapyObject):
         instrument = None if fx_index == -1 else renardo_reapy.FX(self, fx_index)
         return instrument
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def items(self):
         """
@@ -479,7 +479,7 @@ class Track(ReapyObject):
             ]
         return names
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def mute(self):
         """Mute track (do nothing if track is already muted)."""
         if not self.is_muted:
@@ -576,7 +576,7 @@ class Track(ReapyObject):
             self._project = self._get_project()
         return self._project
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def receives(self):
         return [
@@ -589,7 +589,7 @@ class Track(ReapyObject):
         """
         RPR.SetTrackSelected(self.id, True)
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def sends(self):
         return [
@@ -603,13 +603,13 @@ class Track(ReapyObject):
     def set_info_value(self, param_name, param_value):
         RPR.SetMediaTrackInfo_Value(self.id, param_name, param_value)
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def solo(self):
         """Solo track (do nothing if track is already solo)."""
         if not self.is_solo:
             self.toggle_solo()
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def toggle_mute(self):
         """Toggle mute on track."""
         selected_tracks = self.project.selected_tracks
@@ -617,7 +617,7 @@ class Track(ReapyObject):
         self.project.perform_action(40280)
         self.project.selected_tracks = selected_tracks
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def toggle_solo(self):
         """Toggle solo on track."""
         selected_tracks = self.project.selected_tracks
@@ -625,7 +625,7 @@ class Track(ReapyObject):
         self.project.perform_action(7)
         self.project.selected_tracks = selected_tracks
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def unmute(self):
         """Unmute track (do nothing if track is not muted)."""
         if self.is_muted:
@@ -637,7 +637,7 @@ class Track(ReapyObject):
         """
         RPR.SetTrackSelected(self.id, False)
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def unsolo(self):
         """Unsolo track (do nothing if track is not solo)."""
         if self.is_solo:
@@ -686,7 +686,7 @@ class TrackList(ReapyObjectList):
         """
         self.parent = parent
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def __delitem__(self, key):
         tracks = self[key] if isinstance(key, slice) else [self[key]]
         for track in tracks:
@@ -709,7 +709,7 @@ class TrackList(ReapyObjectList):
     def _args(self):
         return self.parent,
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def _get_items_from_slice(self, slice):
         indices = range(*slice.indices(len(self)))
         return [self[i] for i in indices]

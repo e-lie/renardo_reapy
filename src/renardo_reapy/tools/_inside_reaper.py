@@ -48,7 +48,7 @@ class inside_reaper(contextlib.ContextDecorator):
 
     Example usage as decorator:
 
-    >>> @renardo_reapy.inside_reaper()
+    >>> @inside_reaper()
     ... def add_n_tracks(n):
     ...     for x in range(n):
     ...         renardo_reapy.Project().add_track()

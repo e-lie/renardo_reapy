@@ -1,6 +1,7 @@
 import renardo_reapy.runtime
 from renardo_reapy import reascript_api as RPR
 from renardo_reapy.core import ReapyObject
+from renardo_reapy.tools import inside_reaper
 
 
 class Source(ReapyObject):
@@ -34,7 +35,7 @@ class Source(ReapyObject):
         _, filename, _ = RPR.GetMediaSourceFileName(self.id, "", 10**5)
         return filename
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def has_valid_id(self):
         """

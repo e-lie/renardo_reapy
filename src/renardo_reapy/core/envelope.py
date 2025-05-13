@@ -3,6 +3,7 @@ import warnings
 import renardo_reapy.runtime
 from renardo_reapy import reascript_api as RPR
 from renardo_reapy.core import ReapyObject
+from renardo_reapy.tools import inside_reaper
 
 
 class Envelope(ReapyObject):
@@ -52,7 +53,7 @@ class Envelope(ReapyObject):
         """
         RPR.DeleteEnvelopePointRange(self.id, start, end)
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def get_derivatives(self, time, raw=False):
         """
         Return envelope derivatives of order 1, 2, 3 at a given time.
@@ -85,7 +86,7 @@ class Envelope(ReapyObject):
             d3 = RPR.Envelope_FormatValue(self.id, d3, "", 2048)[2]
         return d, d2, d3
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def get_value(self, time, raw=False):
         """
         Return envelope value at a given time.
@@ -117,7 +118,7 @@ class Envelope(ReapyObject):
             value = RPR.Envelope_FormatValue(self.id, value, "", 2048)[2]
         return value
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def has_valid_id(self):
         """

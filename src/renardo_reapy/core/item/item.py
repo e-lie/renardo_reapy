@@ -1,6 +1,7 @@
 import renardo_reapy.runtime
 from renardo_reapy import reascript_api as RPR
 from renardo_reapy.core import ReapyObject
+from renardo_reapy.tools import inside_reaper
 
 
 class Item(ReapyObject):
@@ -43,7 +44,7 @@ class Item(ReapyObject):
         take = renardo_reapy.Take(take_id)
         return take
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def delete(self):
         """Delete item."""
         RPR.DeleteTrackMediaItem(self.track.id, self.id)
@@ -70,7 +71,7 @@ class Item(ReapyObject):
         take = renardo_reapy.Take(take_id)
         return take
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def has_valid_id(self):
         """
@@ -195,7 +196,7 @@ class Item(ReapyObject):
         left, right = self, Item(right_id)
         return left, right
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def takes(self):
         """
@@ -211,7 +212,7 @@ class Item(ReapyObject):
         takes = [renardo_reapy.Take(take_id) for take_id in take_ids]
         return takes
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     @property
     def track(self):
         """

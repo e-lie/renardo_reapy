@@ -328,7 +328,7 @@ class FXList(ReapyObjectList):
     def __init__(self, parent: ty.Union[renardo_reapy.Track, renardo_reapy.Take]) -> None:
         ...
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def __delitem__(self, key: ty.Union[int, slice]) -> None:
         ...
 
@@ -343,7 +343,7 @@ class FXList(ReapyObjectList):
     def __len__(self) -> int:
         ...
 
-    @renardo_reapy.inside_reaper()
+    @inside_reaper()
     def _get_items_from_slice(self, slice: slice) -> ty.List[renardo_reapy.FX]:
         ...
 
