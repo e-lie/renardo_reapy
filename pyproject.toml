@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "renardo_reapy"
-version = "0.11.0.dev3"
+version = "0.11.0.dev4"
 description = "A fork of Reapy, the pythonic wrapper for REAPER's ReaScript Python API. Intended to be refactored and simplifyed for maintenance and usage as base for renardo Reaper integration"
 readme = "README.md"
 requires-python = ">=3.9"
