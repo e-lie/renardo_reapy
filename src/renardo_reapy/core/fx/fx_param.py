@@ -1,7 +1,7 @@
-import reapy
-import reapy.reascript_api as RPR
-from reapy.core import ReapyObject, ReapyObjectList
-from reapy.errors import DistError
+import renardo_reapy
+import renardo_reapy.reascript_api as RPR
+from renardo_reapy.core import ReapyObject, ReapyObjectList
+from renardo_reapy.errors import DistError
 
 
 class FXParam(float):
@@ -32,11 +32,11 @@ class FXParam(float):
         """
         parent_fx = self.parent_list.parent_fx
         parent = parent_fx.parent
-        if isinstance(parent, reapy.Track):
+        if isinstance(parent, renardo_reapy.Track):
             callback = RPR.GetFXEnvelope
         else:  # Then it is a Take
             callback = self.functions["GetEnvelope"]
-        envelope = reapy.Envelope(parent, callback(
+        envelope = renardo_reapy.Envelope(parent, callback(
             parent.id, parent_fx.index, self.index, True
         ))
         return envelope
@@ -50,11 +50,11 @@ class FXParam(float):
         """
         parent_fx = self.parent_list.parent_fx
         parent = parent_fx.parent
-        if isinstance(parent, reapy.Track):
+        if isinstance(parent, renardo_reapy.Track):
             callback = RPR.GetFXEnvelope
         else:  # Then it is a Take
             callback = self.functions["GetEnvelope"]
-        envelope = reapy.Envelope(parent, callback(
+        envelope = renardo_reapy.Envelope(parent, callback(
             parent.id, parent_fx.index, self.index, False
         ))
         if not envelope._is_defined:
@@ -200,13 +200,13 @@ class FXParamsList(ReapyObjectList):
         self, parent_fx=None, parent_id=None, parent_fx_index=None
     ):
         if parent_fx is None:
-            parent_fx = reapy.FX(parent_id=parent_id, index=parent_fx_index)
+            parent_fx = renardo_reapy.FX(parent_id=parent_id, index=parent_fx_index)
         self.parent_id = parent_fx.parent_id
         self.fx_index = parent_fx.index
         self.functions = parent_fx.functions
 
     def __getitem__(self, i):
-        with reapy.inside_reaper():
+        with renardo_reapy.inside_reaper():
             if isinstance(i, str):
                 i = self._get_param_index(i)
             n_params = len(self)
@@ -230,7 +230,7 @@ class FXParamsList(ReapyObjectList):
         return length
 
     def __setitem__(self, i, value):
-        with reapy.inside_reaper():
+        with renardo_reapy.inside_reaper():
             if isinstance(i, str):
                 i = self._get_param_index(i)
             n_params = len(self)
@@ -243,7 +243,7 @@ class FXParamsList(ReapyObjectList):
             self.parent_id, self.fx_index, i, value
         )
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def _get_param_index(self, name):
         try:
             return [fx.name for fx in self].index(name)
@@ -252,7 +252,7 @@ class FXParamsList(ReapyObjectList):
                 "{} has no param named {}".format(self.parent_fx, name)
             )
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def _get_values(self):
         """Return values of all parameters in self."""
         return [
@@ -274,7 +274,7 @@ class FXParamsList(ReapyObjectList):
 
         :type: FX
         """
-        fx = reapy.FX(parent_id=self.parent_id, index=self.fx_index)
+        fx = renardo_reapy.FX(parent_id=self.parent_id, index=self.fx_index)
         return fx
 
 

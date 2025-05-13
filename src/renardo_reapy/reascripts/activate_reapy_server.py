@@ -12,13 +12,13 @@ import site
 import sys
 
 try:
-    import reapy
+    import renardo_reapy
 except ImportError:
     reapy_path = pathlib.Path(sys.path[0]).resolve().parent.parent
     sys.path.append(str(reapy_path))
-    import reapy
+    import renardo_reapy
 
-from reapy.tools.network import Server
+from renardo_reapy.tools.network import Server
 
 
 def run_main_loop():
@@ -29,12 +29,12 @@ def run_main_loop():
     results = SERVER.process_requests(requests)
     SERVER.send_results(results)
     # Run main_loop again
-    reapy.defer(run_main_loop)
+    renardo_reapy.defer(run_main_loop)
 
 
 def get_new_renardo_reapy_server():
-    server_port = reapy.config.REAPY_SERVER_PORT
-    reapy.set_ext_state("renardo_reapy", "server_port", server_port)
+    server_port = renardo_reapy.config.REAPY_SERVER_PORT
+    renardo_reapy.set_ext_state("renardo_reapy", "server_port", server_port)
     server = Server(server_port)
     return server
 
@@ -42,4 +42,4 @@ def get_new_renardo_reapy_server():
 if __name__ == "__main__":
     SERVER = get_new_renardo_reapy_server()
     run_main_loop()
-    reapy.at_exit(reapy.delete_ext_state, "renardo_reapy", "server_port")
+    renardo_reapy.at_exit(renardo_reapy.delete_ext_state, "renardo_reapy", "server_port")

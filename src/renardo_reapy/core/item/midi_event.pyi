@@ -1,6 +1,6 @@
-import reapy
-import reapy.reascript_api as RPR
-from reapy.core import ReapyObject, ReapyObjectList
+import renardo_reapy
+import renardo_reapy.reascript_api as RPR
+from renardo_reapy.core import ReapyObject, ReapyObjectList
 import typing as ty
 import typing_extensions as te
 
@@ -9,10 +9,10 @@ T = ty.TypeVar('T')
 
 class MIDIEvent(ReapyObject):
     """Abstract class for MIDI events."""
-    parent: reapy.Take
+    parent: renardo_reapy.Take
     index: int
 
-    def __init__(self, parent: reapy.Take, index: int):
+    def __init__(self, parent: renardo_reapy.Take, index: int):
         """
         Create event.
 
@@ -27,14 +27,14 @@ class MIDIEvent(ReapyObject):
         ...
 
     @property
-    def _args(self) -> ty.Tuple[reapy.Take, int]:
+    def _args(self) -> ty.Tuple[renardo_reapy.Take, int]:
         ...
 
 
 class MIDIEventList(ReapyObjectList, ty.Generic[T]):
-    parent: reapy.Take
+    parent: renardo_reapy.Take
 
-    def __init__(self, parent: reapy.Take) -> None:
+    def __init__(self, parent: renardo_reapy.Take) -> None:
         """
         Create event list.
 
@@ -52,7 +52,7 @@ class MIDIEventList(ReapyObjectList, ty.Generic[T]):
         ...
 
     @property
-    def _args(self) -> ty.Tuple[reapy.Take]:
+    def _args(self) -> ty.Tuple[renardo_reapy.Take]:
         ...
 
     @property

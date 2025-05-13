@@ -1,9 +1,9 @@
 """Define FX and FXParam classes."""
 
-import reapy
-from reapy import reascript_api as RPR
-from reapy.core import ReapyObject, ReapyObjectList
-from reapy.errors import DistError, UndefinedFXParamError
+import renardo_reapy
+from renardo_reapy import reascript_api as RPR
+from renardo_reapy.core import ReapyObject, ReapyObjectList
+from renardo_reapy.errors import DistError, UndefinedFXParamError
 import typing as ty
 
 
@@ -16,7 +16,7 @@ class FX(ReapyObject):
     index: int
 
     def __init__(self,
-                 parent: ty.Optional[ty.Union[reapy.Track, reapy.Take]] = None,
+                 parent: ty.Optional[ty.Union[renardo_reapy.Track, renardo_reapy.Take]] = None,
                  index: ty.Optional[int] = None,
                  parent_id: ty.Optional[str] = None) -> None:
         ...
@@ -40,7 +40,7 @@ class FX(ReapyObject):
         """Close user interface."""
         ...
 
-    def copy_to_take(self, take: reapy.Take, index: int = 0) -> None:
+    def copy_to_take(self, take: renardo_reapy.Take, index: int = 0) -> None:
         """
         Copy FX to take.
 
@@ -57,7 +57,7 @@ class FX(ReapyObject):
         """
         ...
 
-    def copy_to_track(self, track: reapy.Track, index: int = 0) -> None:
+    def copy_to_track(self, track: renardo_reapy.Track, index: int = 0) -> None:
         """
         Copy FX to track.
 
@@ -133,7 +133,7 @@ class FX(ReapyObject):
         """Make FX online."""
         ...
 
-    def move_to_take(self, take: reapy.Take, index: int = 0) -> None:
+    def move_to_take(self, take: renardo_reapy.Take, index: int = 0) -> None:
         """
         Move FX to take.
 
@@ -150,7 +150,7 @@ class FX(ReapyObject):
         """
         ...
 
-    def move_to_track(self, track: reapy.Track, index: int = 0) -> None:
+    def move_to_track(self, track: renardo_reapy.Track, index: int = 0) -> None:
         """
         Move FX to track.
 
@@ -225,7 +225,7 @@ class FX(ReapyObject):
         ...
 
     @property
-    def params(self) -> reapy.FXParamsList:
+    def params(self) -> renardo_reapy.FXParamsList:
         """
         List of parameters.
 
@@ -234,7 +234,7 @@ class FX(ReapyObject):
         ...
 
     @property
-    def parent(self) -> ty.Union[reapy.Track, reapy.Take]:
+    def parent(self) -> ty.Union[renardo_reapy.Track, renardo_reapy.Take]:
         """
         FX parent.
 
@@ -296,7 +296,7 @@ class FX(ReapyObject):
         ...
 
     @property
-    def window(self) -> ty.Optional[reapy.Window]:
+    def window(self) -> ty.Optional[renardo_reapy.Window]:
         """
         Floating window associated to FX, if it exists.
 
@@ -323,33 +323,33 @@ class FXList(ReapyObjectList):
     """
 
     _class_name = "FXList"
-    parent: ty.Union[reapy.Track, reapy.Take]
+    parent: ty.Union[renardo_reapy.Track, renardo_reapy.Take]
 
-    def __init__(self, parent: ty.Union[reapy.Track, reapy.Take]) -> None:
+    def __init__(self, parent: ty.Union[renardo_reapy.Track, renardo_reapy.Take]) -> None:
         ...
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def __delitem__(self, key: ty.Union[int, slice]) -> None:
         ...
 
     @ty.overload
-    def __getitem__(self, i: ty.Union[int, str]) -> reapy.FX:
+    def __getitem__(self, i: ty.Union[int, str]) -> renardo_reapy.FX:
         ...
 
     @ty.overload
-    def __getitem__(self, i: slice) -> ty.List[reapy.FX]:
+    def __getitem__(self, i: slice) -> ty.List[renardo_reapy.FX]:
         ...
 
     def __len__(self) -> int:
         ...
 
-    @reapy.inside_reaper()
-    def _get_items_from_slice(self, slice: slice) -> ty.List[reapy.FX]:
+    @renardo_reapy.inside_reaper()
+    def _get_items_from_slice(self, slice: slice) -> ty.List[renardo_reapy.FX]:
         ...
 
     def _get_fx_index(self, name: str) -> int:
         ...
 
     @property
-    def _args(self) -> ty.Tuple[ty.Union[reapy.Track, reapy.Take]]:
+    def _args(self) -> ty.Tuple[ty.Union[renardo_reapy.Track, renardo_reapy.Take]]:
         ...

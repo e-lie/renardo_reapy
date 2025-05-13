@@ -1,6 +1,6 @@
-import reapy
-from reapy import reascript_api as RPR
-from reapy.core import ReapyObject
+import renardo_reapy
+from renardo_reapy import reascript_api as RPR
+from renardo_reapy.core import ReapyObject
 
 
 class Region(ReapyObject):
@@ -20,13 +20,13 @@ class Region(ReapyObject):
         self.project_id = parent_project_id
         self.index = index
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def _get_enum_index(self):
         """
         Return region index as needed by RPR.EnumProjectMarkers2.
         """
         return next(
-            i for i, r in enumerate(reapy.Project(self.project_id).regions)
+            i for i, r in enumerate(renardo_reapy.Project(self.project_id).regions)
             if r.index == self.index
         )
 
@@ -54,7 +54,7 @@ class Region(ReapyObject):
         """
         RPR.SetRegionRenderMatrix(self.project_id, self.index, track.id, 1)
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def add_rendered_tracks(self, tracks):
         """
         Efficiently add  several tracks to region render matrix.
@@ -71,7 +71,7 @@ class Region(ReapyObject):
         for track in tracks:
             self.add_rendered_track(track)
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     @property
     def end(self):
         """
@@ -121,7 +121,7 @@ class Region(ReapyObject):
         """
         RPR.SetRegionRenderMatrix(self.project_id, self.index, track.id, -1)
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def remove_rendered_tracks(self, tracks):
         """
         Efficiently remove  several tracks from region render matrix.
@@ -138,7 +138,7 @@ class Region(ReapyObject):
         for track in tracks:
             self.remove_rendered_track(track)
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     @property
     def rendered_tracks(self):
         """
@@ -152,11 +152,11 @@ class Region(ReapyObject):
             track_id = RPR.EnumRegionRenderMatrix(
                 self.project_id, self.index, i
             )
-            tracks.append(reapy.Track(track_id))
+            tracks.append(renardo_reapy.Track(track_id))
             i += 1
         return tracks[:-1]
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     @property
     def start(self):
         """

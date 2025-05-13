@@ -1,6 +1,6 @@
-import reapy
-from reapy import reascript_api as RPR
-from reapy.core import ReapyObject
+import renardo_reapy
+from renardo_reapy import reascript_api as RPR
+from renardo_reapy.core import ReapyObject
 import typing as ty
 
 
@@ -25,7 +25,7 @@ class Send(ReapyObject):
     type: str
 
     def __init__(self,
-                 track: ty.Optional[reapy.Track] = None,
+                 track: ty.Optional[renardo_reapy.Track] = None,
                  index: int = 0,
                  track_id: ty.Optional[ty.Union[str, int]] = None,
                  type: str = "send") -> None:
@@ -45,7 +45,7 @@ class Send(ReapyObject):
         ...
 
     @property
-    def dest_track(self) -> reapy.Track:
+    def dest_track(self) -> renardo_reapy.Track:
         """
         Destination track.
 
@@ -53,7 +53,7 @@ class Send(ReapyObject):
         """
         ...
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def flip_phase(self) -> None:
         """
         Toggle whether phase is flipped.
@@ -218,7 +218,7 @@ class Send(ReapyObject):
         ...
 
     @property
-    def source_track(self) -> reapy.Track:
+    def source_track(self) -> renardo_reapy.Track:
         """
         Source track.
 

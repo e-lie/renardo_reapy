@@ -1,6 +1,6 @@
-import reapy
-import reapy.reascript_api as RPR
-from reapy.core import ReapyObject, ReapyObjectList
+import renardo_reapy
+import renardo_reapy.reascript_api as RPR
+from renardo_reapy.core import ReapyObject, ReapyObjectList
 
 
 class MIDIEvent(ReapyObject):
@@ -35,7 +35,7 @@ class MIDIEvent(ReapyObject):
         f = getattr(RPR, self._del_name)
         f(self.parent.id, self.index)
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def set(self, message=None, position=None, selected=None,
             muted=None, unit="seconds", sort=True):
         """
@@ -87,7 +87,7 @@ class MIDIEventList(ReapyObjectList):
         self.parent = parent
 
     def __getitem__(self, key):
-        with reapy.inside_reaper():
+        with renardo_reapy.inside_reaper():
             if key >= len(self):
                 raise IndexError
             return self._elements_class(self.parent, key)
@@ -150,7 +150,7 @@ class CC(MIDIEvent):
     def _del_name(self):
         return 'MIDI_DeleteCC'
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     @property
     def infos(self):
         """

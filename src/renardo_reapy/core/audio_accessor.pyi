@@ -1,6 +1,6 @@
-import reapy
-import reapy.reascript_api as RPR
-from reapy.core import ReapyObject
+import renardo_reapy
+import renardo_reapy.reascript_api as RPR
+from renardo_reapy.core import ReapyObject
 import typing as ty
 
 

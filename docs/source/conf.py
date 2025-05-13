@@ -16,7 +16,7 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join("..", "..")))
 
-import reapy
+import renardo_reapy
 
 
 # -- Project information -----------------------------------------------------
@@ -26,9 +26,9 @@ copyright = '2020, Roméo Després, 2024 Elie Gavoty'
 author = 'Elie Gavoty (fork of Roméo Després)'
 
 # The short X.Y version
-version = '.'.join(reapy.__version__.split('.')[:2])
+version = '.'.join(renardo_renardo_reapy.__version__.split('.')[:2])
 # The full version, including alpha/beta/rc tags
-release = reapy.__version__
+release = renardo_renardo_reapy.__version__
 
 
 # -- General configuration ---------------------------------------------------
@@ -134,7 +134,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'renardo_reapy.tex', 'renardo_reapy Documentation',
+    (master_doc, 'renardo_renardo_reapy.tex', 'renardo_reapy Documentation',
      'Elie Gavoty (fork of Roméo Després)', 'manual'),
 ]
 

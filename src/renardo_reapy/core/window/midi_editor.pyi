@@ -1,5 +1,5 @@
-import reapy
-import reapy.reascript_api as RPR
+import renardo_reapy
+import renardo_reapy.reascript_api as RPR
 from .window import Window
 import typing as ty
 
@@ -122,7 +122,7 @@ class MIDIEditor(Window):
         ...
 
     @property
-    def take(self) -> reapy.Take:
+    def take(self) -> renardo_reapy.Take:
         """
         Take currently edited.
 

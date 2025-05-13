@@ -1,5 +1,5 @@
-from reapy.errors import DisconnectedClientError, DistError
-from reapy.tools import json
+from renardo_reapy.errors import DisconnectedClientError, DistError
+from renardo_reapy.tools import json
 from .socket import Socket
 
 

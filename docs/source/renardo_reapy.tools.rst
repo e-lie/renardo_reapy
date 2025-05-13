@@ -1,37 +1,37 @@
-reapy.tools package
+renardo_reapy.tools package
 ===================
 
 Submodules
 ----------
 
-reapy.tools.dist\_program module
+renardo_reapy.tools.dist\_program module
 --------------------------------
 
-.. automodule:: reapy.tools.dist_program
+.. automodule:: renardo_reapy.tools.dist_program
     :members:
     :undoc-members:
     :show-inheritance:
 
-reapy.tools.inside\_reaper module
+renardo_reapy.tools.inside\_reaper module
 --------------------------------
 
-.. automodule:: reapy.tools.inside_reaper
+.. automodule:: renardo_reapy.tools.inside_reaper
     :members:
     :undoc-members:
     :show-inheritance:
 
-reapy.tools.json module
+renardo_reapy.tools.json module
 -----------------------
 
-.. automodule:: reapy.tools.json
+.. automodule:: renardo_reapy.tools.json
     :members:
     :undoc-members:
     :show-inheritance:
 
-reapy.tools.program module
+renardo_reapy.tools.program module
 --------------------------
 
-.. automodule:: reapy.tools.program
+.. automodule:: renardo_reapy.tools.program
     :members:
     :undoc-members:
     :show-inheritance:
@@ -40,7 +40,7 @@ reapy.tools.program module
 Module contents
 ---------------
 
-.. automodule:: reapy.tools
+.. automodule:: renardo_reapy.tools
     :members:
     :undoc-members:
     :show-inheritance:

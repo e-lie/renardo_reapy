@@ -1,6 +1,6 @@
-import reapy
-from reapy import reascript_api as RPR
-from reapy.core import ReapyObject
+import renardo_reapy
+from renardo_reapy import reascript_api as RPR
+from renardo_reapy.core import ReapyObject
 
 
 class Take(ReapyObject):
@@ -27,10 +27,10 @@ class Take(ReapyObject):
             Audio accessor on take.
         """
         audio_accessor_id = RPR.CreateTakeAudioAccessor(self.id)
-        audio_accessor = reapy.AudioAccessor(audio_accessor_id)
+        audio_accessor = renardo_reapy.AudioAccessor(audio_accessor_id)
         return audio_accessor
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def add_event(self, message, position, unit="seconds"):
         """
         Add generic event to the take at position.
@@ -90,10 +90,10 @@ class Take(ReapyObject):
         )
         if index == -1:
             raise ValueError("Can't find FX named {}".format(name))
-        fx = reapy.FX(self, index)
+        fx = renardo_reapy.FX(self, index)
         return fx
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def add_note(
         self, start, end, pitch, velocity=100, channel=0, selected=False,
         muted=False, unit="seconds", sort=True
@@ -140,7 +140,7 @@ class Take(ReapyObject):
         )
         RPR.MIDI_InsertNote(*args)
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def add_sysex(self, message, position, unit="seconds", evt_type=-1):
         """
         Add SysEx event to take.
@@ -200,11 +200,11 @@ class Take(ReapyObject):
 
         :type: CCList
         """
-        return reapy.CCList(self)
+        return renardo_reapy.CCList(self)
 
     @property
     def envelopes(self):
-        return reapy.EnvelopeList(self)
+        return renardo_reapy.EnvelopeList(self)
 
     @property
     def fxs(self):
@@ -213,12 +213,12 @@ class Take(ReapyObject):
 
         :type: FXList
         """
-        return reapy.FXList(self)
+        return renardo_reapy.FXList(self)
 
     def get_info_value(self, param_name):
         return RPR.GetMediaItemTakeInfo_Value(self.id, param_name)
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     @property
     def has_valid_id(self):
         """
@@ -236,7 +236,7 @@ class Take(ReapyObject):
         pointer, name = self._get_pointer_and_name()
         return bool(RPR.ValidatePtr2(project_id, pointer, name))
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     @property
     def is_active(self):
         """
@@ -262,7 +262,7 @@ class Take(ReapyObject):
 
         :type: Item
         """
-        return reapy.Item(RPR.GetMediaItemTake_Item(self.id))
+        return renardo_reapy.Item(RPR.GetMediaItemTake_Item(self.id))
 
     @property
     def guid(self):
@@ -291,7 +291,7 @@ class Take(ReapyObject):
         -------
         MIDIEventList
         """
-        return reapy.core.item.midi_event.MIDIEventList(self)
+        return renardo_reapy.core.item.midi_event.MIDIEventList(self)
 
     def midi_hash(self, notes_only=False):
         """
@@ -386,7 +386,7 @@ class Take(ReapyObject):
 
         :type: NoteList
         """
-        return reapy.NoteList(self)
+        return renardo_reapy.NoteList(self)
 
     def ppq_to_beat(self, ppq):
         """
@@ -431,17 +431,17 @@ class Take(ReapyObject):
         time = RPR.MIDI_GetProjTimeFromPPQPos(self.id, ppq)
         return time
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     @property
     def project(self):
         """
         Take parent project.
 
-        :type: reapy.Project
+        :type: renardo_reapy.Project
         """
         return self.item.project
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def _resolve_midi_unit(self, pos_tuple, unit="seconds"):
         """Get positions as ppq from tuple of positions of any length.
 
@@ -522,7 +522,7 @@ class Take(ReapyObject):
 
         :type: Source
         """
-        return reapy.Source(RPR.GetMediaItemTake_Source(self.id))
+        return renardo_reapy.Source(RPR.GetMediaItemTake_Source(self.id))
 
     @property
     def start_offset(self):
@@ -562,7 +562,7 @@ class Take(ReapyObject):
         :type: Track
         """
         track_id = RPR.GetMediaItemTake_Track(self.id)
-        return reapy.Track(track_id)
+        return renardo_reapy.Track(track_id)
 
     def unselect_all_midi_events(self):
         """
@@ -581,5 +581,5 @@ class Take(ReapyObject):
 
         :type: FX or NoneType
         """
-        with reapy.inside_reaper():
+        with renardo_reapy.inside_reaper():
             return self.fxs[RPR.TakeFX_GetChainVisible(self.id)]

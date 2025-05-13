@@ -1,6 +1,6 @@
-import reapy
-from reapy import reascript_api as RPR
-from reapy.core import ReapyObject
+import renardo_reapy
+from renardo_reapy import reascript_api as RPR
+from renardo_reapy.core import ReapyObject
 
 
 class Source(ReapyObject):
@@ -34,7 +34,7 @@ class Source(ReapyObject):
         _, filename, _ = RPR.GetMediaSourceFileName(self.id, "", 10**5)
         return filename
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     @property
     def has_valid_id(self):
         """
@@ -48,7 +48,7 @@ class Source(ReapyObject):
         pointer, name = self._get_pointer_and_name()
         return any(
             RPR.ValidatePtr2(project.id, pointer, name)
-            for project in reapy.get_projects()
+            for project in renardo_reapy.get_projects()
         )
 
     def length(self, unit="seconds"):

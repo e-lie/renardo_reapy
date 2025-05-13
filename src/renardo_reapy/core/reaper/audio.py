@@ -1,7 +1,7 @@
 """Audio handling functions."""
 
-import reapy
-import reapy.reascript_api as RPR
+import renardo_reapy
+import renardo_reapy.reascript_api as RPR
 
 
 def get_input_latency(unit="second"):
@@ -26,7 +26,7 @@ def get_input_latency(unit="second"):
     return latency
 
 
-@reapy.inside_reaper()
+@renardo_reapy.inside_reaper()
 def get_input_names():
     """
     Return names of all input channels.
@@ -36,7 +36,7 @@ def get_input_names():
     names : list of str
         Names of input channels.
     """
-    n_channels = reapy.audio.get_n_inputs()
+    n_channels = renardo_reapy.audio.get_n_inputs()
     return tuple(map(RPR.GetInputChannelName, range(n_channels)))
 
 
@@ -89,7 +89,7 @@ def get_output_latency(unit="second"):
     return latency
 
 
-@reapy.inside_reaper()
+@renardo_reapy.inside_reaper()
 def get_output_names():
     """
     Return names of all output channels.
@@ -99,7 +99,7 @@ def get_output_names():
     names : list of str
         Names of output channels.
     """
-    n_channels = reapy.audio.get_n_outputs()
+    n_channels = renardo_reapy.audio.get_n_outputs()
     return tuple(map(RPR.GetOutputChannelName, range(n_channels)))
 
 

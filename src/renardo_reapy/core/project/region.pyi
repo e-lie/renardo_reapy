@@ -1,6 +1,6 @@
-import reapy
-from reapy import reascript_api as RPR
-from reapy.core import ReapyObject
+import renardo_reapy
+from renardo_reapy import reascript_api as RPR
+from renardo_reapy.core import ReapyObject
 import typing as ty
 
 
@@ -11,7 +11,7 @@ class Region(ReapyObject):
     index: int
 
     def __init__(self,
-                 parent_project: ty.Optional[reapy.Project] = None,
+                 parent_project: ty.Optional[renardo_reapy.Project] = None,
                  index: ty.Optional[int] = None,
                  parent_project_id: ty.Optional[int] = None) -> None:
         ...
@@ -26,7 +26,7 @@ class Region(ReapyObject):
     def _kwargs(self) -> ty.Dict[str, int]:
         ...
 
-    def add_rendered_track(self, track: reapy.Track) -> None:
+    def add_rendered_track(self, track: renardo_reapy.Track) -> None:
         """
         Add track to region render matrix for this region.
 
@@ -44,7 +44,7 @@ class Region(ReapyObject):
         """
         ...
 
-    def add_rendered_tracks(self, tracks: ty.List[reapy.Track]) -> None:
+    def add_rendered_tracks(self, tracks: ty.List[renardo_reapy.Track]) -> None:
         """
         Efficiently add  several tracks to region render matrix.
 
@@ -87,7 +87,7 @@ class Region(ReapyObject):
         """
         ...
 
-    def remove_rendered_track(self, track: reapy.Track) -> None:
+    def remove_rendered_track(self, track: renardo_reapy.Track) -> None:
         """
         Remove track from region render matrix for this region.
 
@@ -105,7 +105,7 @@ class Region(ReapyObject):
         """
         ...
 
-    def remove_rendered_tracks(self, tracks: ty.List[reapy.Track]) -> None:
+    def remove_rendered_tracks(self, tracks: ty.List[renardo_reapy.Track]) -> None:
         """
         Efficiently remove  several tracks from region render matrix.
 
@@ -121,7 +121,7 @@ class Region(ReapyObject):
         ...
 
     @property
-    def rendered_tracks(self) -> ty.List[reapy.Track]:
+    def rendered_tracks(self) -> ty.List[renardo_reapy.Track]:
         """
         List of tracks for this region in region render matrix.
 

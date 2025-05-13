@@ -1,5 +1,5 @@
-import reapy
-import reapy.reascript_api as RPR
+import renardo_reapy
+import renardo_reapy.reascript_api as RPR
 
 
 class ReapyMetaclass(type):
@@ -8,7 +8,7 @@ class ReapyMetaclass(type):
     def _reapy_parent(self):
         """Return first reapy parent class."""
         for candidate in self.__mro__:
-            if candidate.__module__.startswith('reapy.'):
+            if candidate.__module__.startswith('renardo_reapy.'):
                 return candidate
 
 

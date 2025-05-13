@@ -1,7 +1,7 @@
-reapy
+renardo_reapy
 =====
 
 .. toctree::
    :maxdepth: 4
 
-   reapy
+   renardo_reapy

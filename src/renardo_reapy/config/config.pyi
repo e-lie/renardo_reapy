@@ -1,6 +1,6 @@
-import reapy
-from reapy.errors import OutsideREAPERError
-from reapy.reascripts import activate_reapy_server
+import renardo_reapy
+from renardo_reapy.errors import OutsideREAPERError
+from renardo_reapy.reascripts import activate_reapy_server
 
 from configparser import ConfigParser
 from collections import OrderedDict
@@ -81,7 +81,7 @@ def disable_dist_api() -> None:
     Disable distant API.
 
     Delete ``reapy`` Web interface, and remove the ReaScript
-    ``reapy.reascripts.activate_reapy_server`` from the
+    ``renardo_reapy.reascripts.activate_reapy_server`` from the
     Actions list.
     """
     ...
@@ -92,7 +92,7 @@ def enable_dist_api() -> None:
     Enable distant API.
 
     Create a Web interface and add the ReaScript
-    ``reapy.reascripts.activate_reapy_server`` to the Actions list.
+    ``renardo_reapy.reascripts.activate_reapy_server`` to the Actions list.
     """
     ...
 

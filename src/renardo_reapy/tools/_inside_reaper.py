@@ -2,14 +2,14 @@ import contextlib
 import functools
 import importlib
 
-import reapy
-import reapy.config
-from reapy.errors import DisabledDistAPIError, DisabledDistAPIWarning
+import renardo_reapy
+import renardo_reapy.config
+from renardo_reapy.errors import DisabledDistAPIError, DisabledDistAPIWarning
 from .network import machines
-# if not reapy.is_inside_reaper():
+# if not renardo_reapy.is_inside_reaper():
 #     try:
 #         from .network import Client, WebInterface
-#         _WEB_INTERFACE = WebInterface(reapy.config.WEB_INTERFACE_PORT)
+#         _WEB_INTERFACE = WebInterface(renardo_reapy.config.WEB_INTERFACE_PORT)
 #         _CLIENT = Client(_WEB_INTERFACE.get_reapy_server_port())
 #     except DisabledDistAPIError:
 #         import warnings
@@ -33,13 +33,13 @@ class inside_reaper(contextlib.ContextDecorator):
     --------
     Instead of running:
 
-    >>> project = reapy.Project()
+    >>> project = renardo_reapy.Project()
     >>> l = [project.bpm for i in range(1000)
 
     which takes around 30 seconds, run:
 
-    >>> project = reapy.Project()
-    >>> with reapy.inside_reaper():
+    >>> project = renardo_reapy.Project()
+    >>> with renardo_reapy.inside_reaper():
     ...     l = [project.bpm for i in range(1000)
     ...
 
@@ -47,21 +47,21 @@ class inside_reaper(contextlib.ContextDecorator):
 
     Example usage as decorator:
 
-    >>> @reapy.inside_reaper()
+    >>> @renardo_reapy.inside_reaper()
     ... def add_n_tracks(n):
     ...     for x in range(n):
-    ...         reapy.Project().add_track()
+    ...         renardo_reapy.Project().add_track()
 
     """
 
     def __call__(self, func, encoded_func=None):
-        if reapy.is_inside_reaper():
+        if renardo_reapy.is_inside_reaper():
             return func
         if isinstance(func, property):
             return DistProperty.from_property(func)
-        # Check if the decorated function is from reapy
+        # Check if the decorated function is from renardo_reapy
         module_name = func.__module__
-        if module_name == 'reapy' or module_name.startswith('reapy.'):
+        if module_name == 'reapy' or module_name.startswith('renardo_reapy.'):
             @functools.wraps(func)
             def wrap(*args, **kwargs):
                 f = func if encoded_func is None else encoded_func
@@ -72,11 +72,11 @@ class inside_reaper(contextlib.ContextDecorator):
         return super().__call__(func)
 
     def __enter__(self):
-        if not reapy.is_inside_reaper():
+        if not renardo_reapy.is_inside_reaper():
             machines.get_selected_client().request("HOLD")
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        if not reapy.is_inside_reaper():
+        if not renardo_reapy.is_inside_reaper():
             machines.get_selected_client().request("RELEASE")
         return False
 

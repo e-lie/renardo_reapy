@@ -1,7 +1,7 @@
-import reapy
-from reapy import reascript_api as RPR
-from reapy.core import ReapyObject, ReapyObjectList
-from reapy.errors import UndefinedEnvelopeError
+import renardo_reapy
+from renardo_reapy import reascript_api as RPR
+from renardo_reapy.core import ReapyObject, ReapyObjectList
+from renardo_reapy.errors import UndefinedEnvelopeError
 import typing as ty
 
 
@@ -26,7 +26,7 @@ class Track(ReapyObject):
     In most cases, accessing tracks is better done directly from
     the parent Project:
 
-    >>> project = reapy.Project()
+    >>> project = renardo_reapy.Project()
     >>> project.tracks[0]
     Track("(MediaTrack*)0x00000000110A1AD0")
     >>> project.tracks["PIANO"]  # This is actually the same track
@@ -34,21 +34,21 @@ class Track(ReapyObject):
 
     But the same track can also directly be instantiated with:
 
-    >>> reapy.Track(0, project)
+    >>> renardo_reapy.Track(0, project)
     Track("(MediaTrack*)0x00000000110A1AD0")
 
     or
 
-    >>> reapy.Track("PIANO")
+    >>> renardo_reapy.Track("PIANO")
     Track("(MediaTrack*)0x00000000110A1AD0")
     """
     id: str
-    _project: reapy.Project
+    _project: renardo_reapy.Project
 
     def __init__(
         self,
         id: ty.Union[str, int, float],
-        project: ty.Optional[reapy.Project] = None
+        project: ty.Optional[renardo_reapy.Project] = None
     ) -> None:
         ...
 
@@ -60,7 +60,7 @@ class Track(ReapyObject):
     def _get_id_from_pointer(cls, id_: ty.Union[int, float]) -> str:
         ...
 
-    def _get_project(self) -> reapy.Project:
+    def _get_project(self) -> renardo_reapy.Project:
         """
         Return parent project of track.
 
@@ -69,7 +69,7 @@ class Track(ReapyObject):
         """
         ...
 
-    def add_audio_accessor(self) -> reapy.AudioAccessor:
+    def add_audio_accessor(self) -> renardo_reapy.AudioAccessor:
         """
         Create audio accessor and return it.
 
@@ -82,7 +82,7 @@ class Track(ReapyObject):
 
     def add_fx(
         self, name: str, input_fx: bool = False, even_if_exists: bool = True
-    ) -> reapy.FX:
+    ) -> renardo_reapy.FX:
         """
         Add FX to track and return it.
 
@@ -116,7 +116,7 @@ class Track(ReapyObject):
         start: float = 0,
         end: ty.Optional[float] = None,
         length: float = 0
-    ) -> reapy.Item:
+    ) -> renardo_reapy.Item:
         """
         Create new item on track and return it.
 
@@ -139,7 +139,7 @@ class Track(ReapyObject):
 
     def add_midi_item(
         self, start: float = 0, end: float = 1, quantize: bool = False
-    ) -> reapy.Item:
+    ) -> renardo_reapy.Item:
         """
         Add empty MIDI item to track and return it.
 
@@ -156,8 +156,8 @@ class Track(ReapyObject):
         ...
 
     def add_send(
-        self, destination: ty.Optional[reapy.Track] = None
-    ) -> reapy.Send:
+        self, destination: ty.Optional[renardo_reapy.Track] = None
+    ) -> renardo_reapy.Send:
         """
         Add send to track and return it.
 
@@ -247,7 +247,7 @@ class Track(ReapyObject):
         ...
 
     @property
-    def envelopes(self) -> reapy.EnvelopeList:
+    def envelopes(self) -> renardo_reapy.EnvelopeList:
         """
         List of envelopes on track.
 
@@ -256,7 +256,7 @@ class Track(ReapyObject):
         ...
 
     @property
-    def fxs(self) -> reapy.FXList:
+    def fxs(self) -> renardo_reapy.FXList:
         """
         List of FXs on track.
 
@@ -329,7 +329,7 @@ class Track(ReapyObject):
         ...
 
     @property
-    def instrument(self) -> ty.Optional[reapy.FX]:
+    def instrument(self) -> ty.Optional[renardo_reapy.FX]:
         """
         First instrument FX on track if it exists, else None.
 
@@ -338,7 +338,7 @@ class Track(ReapyObject):
         ...
 
     @property
-    def items(self) -> ty.List[reapy.Item]:
+    def items(self) -> ty.List[renardo_reapy.Item]:
         """
         List of items on track.
 
@@ -483,7 +483,7 @@ class Track(ReapyObject):
         ...
 
     @property
-    def parent_track(self) -> ty.Optional[reapy.Track]:
+    def parent_track(self) -> ty.Optional[renardo_reapy.Track]:
         """
         Parent track, or None if track has none.
 
@@ -492,7 +492,7 @@ class Track(ReapyObject):
         ...
 
     @property
-    def project(self) -> reapy.Project:
+    def project(self) -> renardo_reapy.Project:
         """
         Track parent project.
 
@@ -501,7 +501,7 @@ class Track(ReapyObject):
         ...
 
     @property
-    def receives(self) -> ty.List[reapy.Send]: ...
+    def receives(self) -> ty.List[renardo_reapy.Send]: ...
 
     def select(self) -> None:
         """
@@ -510,7 +510,7 @@ class Track(ReapyObject):
         ...
 
     @property
-    def sends(self) -> ty.List[reapy.Send]:
+    def sends(self) -> ty.List[renardo_reapy.Send]:
         ...
 
     def set_info_string(self, param_name: str, param_string: str) -> None:
@@ -545,7 +545,7 @@ class Track(ReapyObject):
         ...
 
     @property
-    def visible_fx(self) -> reapy.FX:
+    def visible_fx(self) -> renardo_reapy.FX:
         """
         Visible FX in FX chain if any, else None.
 
@@ -573,9 +573,9 @@ class TrackList(ReapyObjectList):
     'Hi-hat'
     'Cymbal"
     """
-    parent: reapy.Project
+    parent: renardo_reapy.Project
 
-    def __init__(self, parent: reapy.Project) -> None:
+    def __init__(self, parent: renardo_reapy.Project) -> None:
         """
         Create track list.
 
@@ -604,11 +604,11 @@ class TrackList(ReapyObjectList):
     def __len__(self) -> int:
         ...
 
-    def __iter__(self) -> ty.Iterator[reapy.Track]:
+    def __iter__(self) -> ty.Iterator[renardo_reapy.Track]:
         ...
 
     @property
-    def _args(self) -> ty.Tuple[reapy.Project]:
+    def _args(self) -> ty.Tuple[renardo_reapy.Project]:
         ...
 
     def _get_items_from_slice(self, slice: slice) -> ty.List[Track]:

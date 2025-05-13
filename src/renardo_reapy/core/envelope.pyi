@@ -1,12 +1,12 @@
-import reapy
-from reapy import reascript_api as RPR
-from reapy.core import ReapyObject
+import renardo_reapy
+from renardo_reapy import reascript_api as RPR
+from renardo_reapy.core import ReapyObject
 import typing as ty
 
 
 class Envelope(ReapyObject):
     id: int
-    _parent: ty.Union[ty.Type[reapy.Take], ty.Type[reapy.Track]]
+    _parent: ty.Union[ty.Type[renardo_reapy.Take], ty.Type[renardo_reapy.Track]]
 
     def __init__(self, parent: ReapyObject, id: int) -> None:
         ...
@@ -16,7 +16,7 @@ class Envelope(ReapyObject):
         ...
 
     def add_item(self, position: float = 0., length: float = 1.,
-                 pool: int = 0) -> reapy.AutomationItem:
+                 pool: int = 0) -> renardo_reapy.AutomationItem:
         """
         Add automation item to envelope.
 
@@ -33,7 +33,7 @@ class Envelope(ReapyObject):
 
         Returns
         -------
-        item : reapy.AutomationItem
+        item : renardo_reapy.AutomationItem
             New automation item.
         """
         ...
@@ -51,7 +51,7 @@ class Envelope(ReapyObject):
         """
         ...
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def get_derivatives(self, time: float,
                         raw: bool = False) -> ty.Tuple[float, float, float]:
         """
@@ -80,7 +80,7 @@ class Envelope(ReapyObject):
         """
         ...
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def get_value(self, time: float,
                   raw: bool = False) -> ty.Union[float, str]:
         """
@@ -111,11 +111,11 @@ class Envelope(ReapyObject):
         ...
 
     @property
-    def items(self) -> ty.List[reapy.AutomationItem]:
+    def items(self) -> ty.List[renardo_reapy.AutomationItem]:
         """
         List of automation items in envelope.
 
-        :type: list of reapy.AutomationItem
+        :type: list of renardo_reapy.AutomationItem
         """
         ...
 
@@ -147,7 +147,7 @@ class Envelope(ReapyObject):
         ...
 
     @property
-    def parent(self) -> ty.Union[ty.Type[reapy.Take], ty.Type[reapy.Track]]:
+    def parent(self) -> ty.Union[ty.Type[renardo_reapy.Take], ty.Type[renardo_reapy.Track]]:
         """
         Envelope parent.
 
@@ -177,17 +177,17 @@ class EnvelopeList(ReapyObject):
     >>> [e.name for e in track.envelopes]
     ['Volume', 'Pan']
     """
-    parent: ty.Union[ty.Type[reapy.Take], ty.Type[reapy.Track]]
+    parent: ty.Union[ty.Type[renardo_reapy.Take], ty.Type[renardo_reapy.Track]]
 
     def __init__(self,
-                 parent: ty.Union[ty.Type[reapy.Take], ty.Type[reapy.Track]]
+                 parent: ty.Union[ty.Type[renardo_reapy.Take], ty.Type[renardo_reapy.Track]]
                  ) -> None:
         ...
 
     @property
     def _args(
             self
-    ) -> ty.Tuple[ty.Union[ty.Type[reapy.Take], ty.Type[reapy.Track]]]:
+    ) -> ty.Tuple[ty.Union[ty.Type[renardo_reapy.Take], ty.Type[renardo_reapy.Track]]]:
         ...
 
     def __getitem__(self, key: ty.Union[str, int]) -> Envelope:

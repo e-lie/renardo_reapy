@@ -1,6 +1,6 @@
 import functools
 
-from reapy.errors import ExtensionNotFoundError
+from renardo_reapy.errors import ExtensionNotFoundError
 
 
 def depends_on_extension(extension, url):
@@ -17,7 +17,7 @@ def depends_on_extension(extension, url):
         URL of the download page or installation instructions of
         the extension.
     """
-    message = "module 'reapy.reascript_api' has no attribute"
+    message = "module 'renardo_reapy.reascript_api' has no attribute"
     def decorator(f):
         """Indicate dependency of a function to an extension.
 

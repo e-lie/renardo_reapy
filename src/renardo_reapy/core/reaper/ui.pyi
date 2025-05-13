@@ -1,7 +1,7 @@
 """User interface-related functions."""
 
-import reapy
-import reapy.reascript_api as RPR
+import renardo_reapy
+import renardo_reapy.reascript_api as RPR
 
 
 def get_color_theme() -> str:
@@ -16,7 +16,7 @@ def get_color_theme() -> str:
     ...
 
 
-def get_leftmost_track_in_mixer() -> reapy.Track:
+def get_leftmost_track_in_mixer() -> renardo_reapy.Track:
     """Return leftmost track in mixer."""
     ...
 
@@ -33,7 +33,7 @@ def set_color_theme(path: str) -> None:
     ...
 
 
-def set_leftmost_track_in_mixer(track: reapy.Track) -> None:
+def set_leftmost_track_in_mixer(track: renardo_reapy.Track) -> None:
     """Set leftmost track in mixer.
 
     The actual leftmost track in mixer might be different after

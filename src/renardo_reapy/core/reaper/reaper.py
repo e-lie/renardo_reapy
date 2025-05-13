@@ -1,5 +1,5 @@
-import reapy
-import reapy.reascript_api as RPR
+import renardo_reapy
+import renardo_reapy.reascript_api as RPR
 import contextlib
 from .defer import ReaperConsole
 
@@ -27,12 +27,12 @@ def add_project_tab(make_current_project=True):
         New project.
     """
     if not make_current_project:
-        current_project = reapy.Project()
+        current_project = renardo_reapy.Project()
         project = add_project_tab(make_current_project=True)
         current_project.make_current_project()
         return project
     perform_action(40859)
-    return reapy.Project()
+    return renardo_reapy.Project()
 
 
 def add_reascript(path, section_id=0, commit=True):
@@ -301,7 +301,7 @@ def get_last_touched_track():
     -------
     track : Track or None if no track has been touched.
     """
-    track = reapy.Track(RPR.GetLastTouchedTrack())
+    track = renardo_reapy.Track(RPR.GetLastTouchedTrack())
     if not track._is_defined:
         track = None
     return track
@@ -316,11 +316,11 @@ def get_main_window():
     window : Window
         Main window.
     """
-    window = reapy.Window(RPR.GetMainHwnd())
+    window = renardo_reapy.Window(RPR.GetMainHwnd())
     return window
 
 
-@reapy.inside_reaper()
+@renardo_reapy.inside_reaper()
 def get_projects():
     """
     Return list of all opened projects.
@@ -330,10 +330,10 @@ def get_projects():
     projects : list of Project
         List of all projects.
     """
-    i, projects = 0, [reapy.Project(index=0)]
+    i, projects = 0, [renardo_reapy.Project(index=0)]
     while projects[-1]._is_defined:
         i += 1
-        projects.append(reapy.Project(index=i))
+        projects.append(renardo_reapy.Project(index=i))
     projects.pop()
     return projects
 
@@ -408,7 +408,7 @@ def has_ext_state(section, key):
     return has_ext_state
 
 
-@reapy.inside_reaper()
+@renardo_reapy.inside_reaper()
 def open_project(filepath, in_new_tab=False, make_current_project=True):
     """
     Open project and return it.
@@ -428,11 +428,11 @@ def open_project(filepath, in_new_tab=False, make_current_project=True):
         Opened project.
     """
     if not make_current_project:
-        current_project = reapy.Project()
+        current_project = renardo_reapy.Project()
     if in_new_tab:
         add_project_tab(make_current_project=True)
     RPR.Main_openProject(filepath)
-    project = reapy.Project()
+    project = renardo_reapy.Project()
     if not make_current_project:
         current_project.make_current_project()
     return project
@@ -455,12 +455,12 @@ class prevent_ui_refresh(contextlib.ContextDecorator):
 
     Its instance can be used both as decorator and as context manager:
 
-    >>> with reapy.prevent_ui_refresh():
-    ...     reapy.Project.add_track()
+    >>> with renardo_reapy.prevent_ui_refresh():
+    ...     renardo_reapy.Project.add_track()
 
     >>> @prevent_ui_refresh()
     >>> def some_function(*args, **kwargs):
-    ...     reapy.Project.add_track()
+    ...     renardo_reapy.Project.add_track()
 
     """
 
@@ -483,11 +483,11 @@ class reaprint(contextlib.ContextDecorator):
 
     Its instance can be used both as decorator and context manager:
 
-    >>> with reapy.reaprint():
+    >>> with renardo_reapy.reaprint():
     ...     print('This will go to the console!')
     ...     print('All these contexted will go to the console!')
 
-    >>> @reapy.reaprint()
+    >>> @renardo_reapy.reaprint()
     >>> def some_function(*args, **kwargs):
     ...     print('This will go to the console!')
     ...     print('All these decorated prints will go to the console!')
@@ -723,12 +723,12 @@ class undo_block(contextlib.ContextDecorator):
 
     Its instance can be used both as decorator and context manager:
 
-    >>> with reapy.undo_block('add track'):
-    ...     reapy.Project.add_track()
+    >>> with renardo_reapy.undo_block('add track'):
+    ...     renardo_reapy.Project.add_track()
 
-    >>> @reapy.undo_block('add track')
+    >>> @renardo_reapy.undo_block('add track')
     >>> def some_function(*args, **kwargs):
-    ...     reapy.Project.add_track()
+    ...     renardo_reapy.Project.add_track()
 
     :param undo_name: Str to register undo name (shown later in Undo menu)
     :param flags: Int to pass to Undo_EndBlock

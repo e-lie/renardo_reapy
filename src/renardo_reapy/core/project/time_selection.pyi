@@ -1,6 +1,6 @@
-import reapy
-from reapy import reascript_api as RPR
-from reapy.core import ReapyObject
+import renardo_reapy
+from renardo_reapy import reascript_api as RPR
+from renardo_reapy.core import ReapyObject
 import typing as ty
 
 
@@ -10,7 +10,7 @@ class TimeSelection(ReapyObject):
     project_id: int
 
     def __init__(self,
-                 parent_project: ty.Optional[reapy.Project] = None,
+                 parent_project: ty.Optional[renardo_reapy.Project] = None,
                  parent_project_id: ty.Optional[int] = None) -> None:
         ...
 

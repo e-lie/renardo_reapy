@@ -1,5 +1,5 @@
-import reapy
-import reapy.reascript_api as RPR
+import renardo_reapy
+import renardo_reapy.reascript_api as RPR
 import contextlib
 from .defer import ReaperConsole
 
@@ -238,7 +238,7 @@ def get_ini_file() -> str:
     ...
 
 
-def get_last_touched_track() -> ty.Optional[reapy.Track]:
+def get_last_touched_track() -> ty.Optional[renardo_reapy.Track]:
     """
     Return last touched track, or None if no track has been touched.
 
@@ -249,7 +249,7 @@ def get_last_touched_track() -> ty.Optional[reapy.Track]:
     ...
 
 
-def get_main_window() -> reapy.Window:
+def get_main_window() -> renardo_reapy.Window:
     """
     Return main window.
 
@@ -261,8 +261,8 @@ def get_main_window() -> reapy.Window:
     ...
 
 
-@reapy.inside_reaper()
-def get_projects() -> ty.List[reapy.Project]:
+@renardo_reapy.inside_reaper()
+def get_projects() -> ty.List[renardo_reapy.Project]:
     """
     Return list of all opened projects.
 
@@ -339,14 +339,14 @@ def has_ext_state(section: str, key: str) -> bool:
     ...
 
 
-def add_project_tab(make_current_project: bool = True) -> reapy.Project:
+def add_project_tab(make_current_project: bool = True) -> renardo_reapy.Project:
     """Open new project tab."""
     ...
 
 
 def open_project(
     filepath: str, in_new_tab: bool = False, make_current_project: bool = True
-) -> reapy.Project:
+) -> renardo_reapy.Project:
     """
     Open project and return it.
 
@@ -381,12 +381,12 @@ class prevent_ui_refresh(contextlib.ContextDecorator):
 
     Its instance can be used both as decorator and as context manager:
 
-    >>> with reapy.prevent_ui_refresh():
-    ...     reapy.Project.add_track()
+    >>> with renardo_reapy.prevent_ui_refresh():
+    ...     renardo_reapy.Project.add_track()
 
     >>> @prevent_ui_refresh()
     >>> def some_function(*args, **kwargs):
-    ...     reapy.Project.add_track()
+    ...     renardo_reapy.Project.add_track()
 
     """
 
@@ -410,11 +410,11 @@ class reaprint(contextlib.ContextDecorator):
 
     Its instance can be used both as decorator and context manager:
 
-    >>> with reapy.reaprint():
+    >>> with renardo_reapy.reaprint():
     ...     print('This will go to the console!')
     ...     print('All these contexted will go to the console!')
 
-    >>> @reapy.reaprint()
+    >>> @renardo_reapy.reaprint()
     >>> def some_function(*args, **kwargs):
     ...     print('This will go to the console!')
     ...     print('All these decorated prints will go to the console!')
@@ -612,12 +612,12 @@ class undo_block(contextlib.ContextDecorator):
 
     Its instance can be used both as decorator and context manager:
 
-    >>> with reapy.undo_block('add track'):
-    ...     reapy.Project.add_track()
+    >>> with renardo_reapy.undo_block('add track'):
+    ...     renardo_reapy.Project.add_track()
 
-    >>> @reapy.undo_block('add track')
+    >>> @renardo_reapy.undo_block('add track')
     >>> def some_function(*args, **kwargs):
-    ...     reapy.Project.add_track()
+    ...     renardo_reapy.Project.add_track()
 
     :param undo_name: Str to register undo name (shown later in Undo menu)
     :param flags: Int to pass to Undo_EndBlock

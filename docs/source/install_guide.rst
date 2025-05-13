@@ -8,17 +8,17 @@ Installation
 
     Below are straightforward instructions for users that already have experience with using Python in a terminal. If you feel you need more explanation, head to `Detailed instructions`_.
 
-reapy is available via ``pip``:
+renardo_reapy is available via ``pip``:
 
 .. code-block:: bash
 
     $ pip install python-reapy
 
-One additional step is required to let REAPER know reapy is available. First, open REAPER. Then in a terminal, run:
+One additional step is required to let REAPER know renardo_reapy is available. First, open REAPER. Then in a terminal, run:
 
 .. code-block:: bash
 
-    $ python -c "import reapy; reapy.configure_reaper()"
+    $ python -c "import renardo_reapy; renardo_reapy.configure_reaper()"
 
 Now restart REAPER, and you're all set!
 
@@ -68,19 +68,19 @@ reapy can be installed with the standard Python package manager ``pip`` (documen
 Configure REAPER
 ****************
 
-REAPER has to be configured to be able to use reapy. First, open REAPER, then run the following in a terminal:
+REAPER has to be configured to be able to use renardo_reapy. First, open REAPER, then run the following in a terminal:
 
 
 (Windows)
 
 .. code-block:: bash
 
-    py -c "import reapy; reapy.configure_reaper()"
+    py -c "import renardo_reapy; renardo_reapy.configure_reaper()"
 
 (MacOS/Linux)
 
 .. code-block:: bash
 
-    python -c "import reapy; reapy.configure_reaper()"
+    python -c "import renardo_reapy; renardo_reapy.configure_reaper()"
 
 Finally, restart REAPER and you're good to go!

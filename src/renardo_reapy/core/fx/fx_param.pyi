@@ -1,7 +1,7 @@
-import reapy
-import reapy.reascript_api as RPR
-from reapy.core import ReapyObject, ReapyObjectList
-from reapy.errors import DistError
+import renardo_reapy
+import renardo_reapy.reascript_api as RPR
+from renardo_reapy.core import ReapyObject, ReapyObjectList
+from renardo_reapy.errors import DistError
 import typing as ty
 
 
@@ -21,7 +21,7 @@ class FXParam(float):
                 **kwargs: ty.Any) -> FXParam:
         ...
 
-    def add_envelope(self) -> reapy.Envelope:
+    def add_envelope(self) -> renardo_reapy.Envelope:
         """
         Create envelope for the parameter and return it.
 
@@ -37,7 +37,7 @@ class FXParam(float):
         ...
 
     @property
-    def envelope(self) -> ty.Optional[reapy.Envelope]:
+    def envelope(self) -> ty.Optional[renardo_reapy.Envelope]:
         """
         Parameter envelope (or None if it doesn't exist).
 
@@ -171,7 +171,7 @@ class FXParamsList(ReapyObjectList):
     functions: ty.Dict[str, ty.Callable[..., ty.Any]]
 
     def __init__(self,
-                 parent_fx: ty.Optional[reapy.FX] = None,
+                 parent_fx: ty.Optional[renardo_reapy.FX] = None,
                  parent_id: ty.Optional[str] = None,
                  parent_fx_index: ty.Optional[int] = None) -> None:
         ...
@@ -188,11 +188,11 @@ class FXParamsList(ReapyObjectList):
     def __setitem__(self, i: ty.Union[str, int], value: float) -> None:
         ...
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def _get_param_index(self, name: str) -> int:
         ...
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def _get_values(self) -> ty.List[float]:
         """Return values of all parameters in self."""
         ...
@@ -202,7 +202,7 @@ class FXParamsList(ReapyObjectList):
         ...
 
     @property
-    def parent_fx(self) -> reapy.FX:
+    def parent_fx(self) -> renardo_reapy.FX:
         """
         Parent FX.
 

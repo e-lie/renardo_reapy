@@ -1,9 +1,9 @@
 """Defines class Project."""
 
-import reapy
-from reapy import reascript_api as RPR
-from reapy.core import ReapyObject
-from reapy.errors import RedoError, UndoError
+import renardo_reapy
+from renardo_reapy import reascript_api as RPR
+from renardo_reapy.core import ReapyObject
+from renardo_reapy.errors import RedoError, UndoError
 import typing as ty
 import typing_extensions as te
 
@@ -61,14 +61,14 @@ class Project(ReapyObject):
         """
         ...
 
-    def _get_track_by_name(self, name: str) -> ty.Optional[reapy.Track]:
+    def _get_track_by_name(self, name: str) -> ty.Optional[renardo_reapy.Track]:
         """Return first track with matching name."""
         ...
 
     def add_marker(self,
                    position: float,
                    name: str = "",
-                   color: ty.Union[ty.Tuple[int], int] = 0) -> reapy.Marker:
+                   color: ty.Union[ty.Tuple[int], int] = 0) -> renardo_reapy.Marker:
         """
         Create new marker and return its index.
 
@@ -84,7 +84,7 @@ class Project(ReapyObject):
 
         Returns
         -------
-        marker : reapy.Marker
+        marker : renardo_reapy.Marker
             New marker.
 
         Notes
@@ -99,7 +99,7 @@ class Project(ReapyObject):
                    start: float,
                    end: float,
                    name: str = "",
-                   color: ty.Union[ty.Tuple[int], int] = 0) -> reapy.Region:
+                   color: ty.Union[ty.Tuple[int], int] = 0) -> renardo_reapy.Region:
         """
         Create new region and return its index.
 
@@ -117,12 +117,12 @@ class Project(ReapyObject):
 
         Returns
         -------
-        region : reapy.Region
+        region : renardo_reapy.Region
             New region.
         """
         ...
 
-    def add_track(self, index: int = 0, name: str = "") -> reapy.Track:
+    def add_track(self, index: int = 0, name: str = "") -> renardo_reapy.Track:
         """
         Add track at a specified index.
 
@@ -297,7 +297,7 @@ class Project(ReapyObject):
         ...
 
     @property
-    def focused_fx(self) -> ty.Optional[reapy.FX]:
+    def focused_fx(self) -> ty.Optional[renardo_reapy.FX]:
         """
         FX that has focus if any, else None.
 
@@ -364,7 +364,7 @@ class Project(ReapyObject):
         """
         ...
 
-    def get_selected_item(self, index: int) -> reapy.Item:
+    def get_selected_item(self, index: int) -> renardo_reapy.Item:
         """
         Return index-th selected item.
 
@@ -380,7 +380,7 @@ class Project(ReapyObject):
         """
         ...
 
-    def get_selected_track(self, index: int) -> reapy.Track:
+    def get_selected_track(self, index: int) -> renardo_reapy.Track:
         """
         Return index-th selected track.
 
@@ -472,7 +472,7 @@ class Project(ReapyObject):
         ...
 
     @property
-    def items(self) -> ty.List[reapy.Item]:
+    def items(self) -> ty.List[renardo_reapy.Item]:
         """
         List of items in project.
 
@@ -491,7 +491,7 @@ class Project(ReapyObject):
 
     @property
     def last_touched_fx(self
-                        ) -> ty.Tuple[ty.Optional[reapy.FX], ty.Optional[int]]:
+                        ) -> ty.Tuple[ty.Optional[renardo_reapy.FX], ty.Optional[int]]:
         """
         Last touched FX and corresponding parameter index.
 
@@ -522,8 +522,8 @@ class Project(ReapyObject):
 
         Examples
         --------
-        >>> p1 = reapy.Project()  # current project
-        >>> p2 = reapy.Project(1)  # other project
+        >>> p1 = renardo_reapy.Project()  # current project
+        >>> p2 = renardo_reapy.Project(1)  # other project
         >>> p2.make_current_project()  # now p2 is current project
         >>> with p1.make_current_project():
         ...     do_something()  # current project is temporarily p1
@@ -538,16 +538,16 @@ class Project(ReapyObject):
         ...
 
     @property
-    def markers(self) -> ty.List[reapy.Marker]:
+    def markers(self) -> ty.List[renardo_reapy.Marker]:
         """
         List of project markers.
 
-        :type: list of reapy.Marker
+        :type: list of renardo_reapy.Marker
         """
         ...
 
     @property
-    def master_track(self) -> reapy.Track:
+    def master_track(self) -> renardo_reapy.Track:
         """
         Project master track.
 
@@ -734,11 +734,11 @@ class Project(ReapyObject):
         ...
 
     @property
-    def regions(self) -> ty.List[reapy.Region]:
+    def regions(self) -> ty.List[renardo_reapy.Region]:
         """
         List of project regions.
 
-        :type: list of reapy.Region
+        :type: list of renardo_reapy.Region
         """
         ...
 
@@ -775,16 +775,16 @@ class Project(ReapyObject):
         ...
 
     @property
-    def selected_envelope(self) -> ty.Optional[reapy.Envelope]:
+    def selected_envelope(self) -> ty.Optional[renardo_reapy.Envelope]:
         """
         Project selected envelope.
 
-        :type: reapy.Envelope or None
+        :type: renardo_reapy.Envelope or None
         """
         ...
 
     @property
-    def selected_items(self) -> ty.List[reapy.Item]:
+    def selected_items(self) -> ty.List[renardo_reapy.Item]:
         """
         List of all selected items.
 
@@ -798,7 +798,7 @@ class Project(ReapyObject):
         ...
 
     @property
-    def selected_tracks(self) -> ty.List[reapy.Track]:
+    def selected_tracks(self) -> ty.List[renardo_reapy.Track]:
         """
         List of selected tracks (excluding master).
 
@@ -807,7 +807,7 @@ class Project(ReapyObject):
         ...
 
     @selected_tracks.setter
-    def selected_tracks(self, tracks: ty.List[reapy.Track]) -> None:
+    def selected_tracks(self, tracks: ty.List[renardo_reapy.Track]) -> None:
         ...
 
     def set_info_string(self, param_name: str, param_string: str) -> None:
@@ -922,15 +922,15 @@ class Project(ReapyObject):
         ...
 
     @property
-    def time_selection(self) -> reapy.TimeSelection:
+    def time_selection(self) -> renardo_reapy.TimeSelection:
         """
         Project time selection.
 
-        time_selection : reapy.TimeSelection
+        time_selection : renardo_reapy.TimeSelection
 
         Can be set and deleted as follows:
 
-        >>> project = reapy.Project()
+        >>> project = renardo_reapy.Project()
         >>> project.time_selection = 3, 8  # seconds
         >>> del project.time_selection
         """
@@ -991,7 +991,7 @@ class Project(ReapyObject):
         ...
 
     @property
-    def tracks(self) -> reapy.TrackList:
+    def tracks(self) -> renardo_reapy.TrackList:
         """
         List of project tracks.
 

@@ -1,6 +1,6 @@
-from reapy import reascript_api as RPR
-from reapy.core import ReapyObject
-from reapy import Envelope
+from renardo_reapy import reascript_api as RPR
+from renardo_reapy.core import ReapyObject
+from renardo_reapy import Envelope
 import typing as ty
 from typing_extensions import TypedDict
 

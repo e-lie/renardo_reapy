@@ -1,8 +1,8 @@
 import warnings
 
-import reapy
-from reapy import reascript_api as RPR
-from reapy.core import ReapyObject
+import renardo_reapy
+from renardo_reapy import reascript_api as RPR
+from renardo_reapy.core import ReapyObject
 
 
 class Envelope(ReapyObject):
@@ -32,11 +32,11 @@ class Envelope(ReapyObject):
 
         Returns
         -------
-        item : reapy.AutomationItem
+        item : renardo_reapy.AutomationItem
             New automation item.
         """
         item_index = RPR.InsertAutomationItem(self.id, pool, position, length)
-        item = reapy.AutomationItem(envelope=self, index=item_index)
+        item = renardo_reapy.AutomationItem(envelope=self, index=item_index)
         return item
 
     def delete_points_in_range(self, start, end):
@@ -52,7 +52,7 @@ class Envelope(ReapyObject):
         """
         RPR.DeleteEnvelopePointRange(self.id, start, end)
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def get_derivatives(self, time, raw=False):
         """
         Return envelope derivatives of order 1, 2, 3 at a given time.
@@ -85,7 +85,7 @@ class Envelope(ReapyObject):
             d3 = RPR.Envelope_FormatValue(self.id, d3, "", 2048)[2]
         return d, d2, d3
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def get_value(self, time, raw=False):
         """
         Return envelope value at a given time.
@@ -117,7 +117,7 @@ class Envelope(ReapyObject):
             value = RPR.Envelope_FormatValue(self.id, value, "", 2048)[2]
         return value
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     @property
     def has_valid_id(self):
         """
@@ -140,9 +140,9 @@ class Envelope(ReapyObject):
         """
         List of automation items in envelope.
 
-        :type: list of reapy.AutomationItem
+        :type: list of renardo_reapy.AutomationItem
         """
-        items = [reapy.AutomationItem(self, i) for i in range(self.n_items)]
+        items = [renardo_reapy.AutomationItem(self, i) for i in range(self.n_items)]
         return items
 
     @property

@@ -1,4 +1,4 @@
-import reapy.reascript_api as RPR
+import renardo_reapy.reascript_api as RPR
 from .window import Window
 
 

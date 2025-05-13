@@ -1,7 +1,7 @@
 import functools
 import typing as ty
 
-from reapy.errors import ExtensionNotFoundError
+from renardo_reapy.errors import ExtensionNotFoundError
 
 FuncType = ty.Callable[..., ty.Any]
 F = ty.TypeVar('F', bound=FuncType)

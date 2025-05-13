@@ -5,9 +5,9 @@ import typing as ty
 from builtins import BaseException
 from types import TracebackType
 
-import reapy
-import reapy.config
-from reapy import errors
+import renardo_reapy
+import renardo_reapy.config
+from renardo_reapy import errors
 from . import client, web_interface
 
 
@@ -38,21 +38,21 @@ def reconnect() -> None:
     Examples
     --------
     Assume no REAPER instance is active.
-    >>> import reapy
+    >>> import renardo_reapy
     errors.DisabledDistAPIWarning: Can't reach distant API. Please start REAPER, or
-    call reapy.config.enable_dist_api() from inside REAPER to enable distant
+    call renardo_reapy.config.enable_dist_api() from inside REAPER to enable distant
     API.
       warnings.warn(errors.DisabledDistAPIWarning())
-    >>> p = reapy.Project()  # Results in error
+    >>> p = renardo_reapy.Project()  # Results in error
     Traceback (most recent call last):
       File "<string>", line 1, in <module>
       File "reapy\\core\\project\\project.py", line 26, in __init__
         id = RPR.EnumProjects(index, None, 0)[0]
-    AttributeError: module 'reapy.reascript_api' has no attribute 'EnumProjects'
+    AttributeError: module 'renardo_reapy.reascript_api' has no attribute 'EnumProjects'
     >>> # Now start REAPER
     ...
-    >>> reapy.reconnect()
-    >>> p = reapy.Project()  # No error!
+    >>> renardo_reapy.reconnect()
+    >>> p = renardo_reapy.Project()  # No error!
     """
     ...
 
@@ -110,6 +110,6 @@ def register_machine(host: str) -> None:
 
     See also
     --------
-    ``reapy.connect``
+    ``renardo_reapy.connect``
     """
     ...

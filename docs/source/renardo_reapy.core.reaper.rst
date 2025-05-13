@@ -1,46 +1,46 @@
-reapy.core.reaper package
+renardo_reapy.core.reaper package
 =========================
 
 Submodules
 ----------
 
-reapy.core.reaper.audio module
+renardo_reapy.core.reaper.audio module
 ------------------------------
 
-.. automodule:: reapy.core.reaper.audio
+.. automodule:: renardo_reapy.core.reaper.audio
     :members:
     :undoc-members:
     :show-inheritance:
 
-reapy.core.reaper.defer module
+renardo_reapy.core.reaper.defer module
 -------------------------------
 
-.. automodule:: reapy.core.reaper.defer
+.. automodule:: renardo_reapy.core.reaper.defer
     :members:
     :undoc-members:
     :show-inheritance:
 
-reapy.core.reaper.midi module
+renardo_reapy.core.reaper.midi module
 -------------------------------
 
-.. automodule:: reapy.core.reaper.midi
+.. automodule:: renardo_reapy.core.reaper.midi
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-reapy.core.reaper.reaper module
+renardo_reapy.core.reaper.reaper module
 -------------------------------
 
-.. automodule:: reapy.core.reaper.reaper
+.. automodule:: renardo_reapy.core.reaper.reaper
     :members:
     :undoc-members:
     :show-inheritance:
 
-reapy.core.reaper.ui module
+renardo_reapy.core.reaper.ui module
 -------------------------------
 
-.. automodule:: reapy.core.reaper.ui
+.. automodule:: renardo_reapy.core.reaper.ui
     :members:
     :undoc-members:
     :show-inheritance:
@@ -49,7 +49,7 @@ reapy.core.reaper.ui module
 Module contents
 ---------------
 
-.. automodule:: reapy.core.reaper
+.. automodule:: renardo_reapy.core.reaper
     :members:
     :undoc-members:
     :show-inheritance:

@@ -1,5 +1,5 @@
-import reapy
-import reapy.reascript_api as RPR
+import renardo_reapy
+import renardo_reapy.reascript_api as RPR
 from .window import Window
 
 
@@ -129,4 +129,4 @@ class MIDIEditor(Window):
 
         :type: Take
         """
-        return reapy.Take(RPR.MIDIEditor_GetTake(self.id))
+        return renardo_reapy.Take(RPR.MIDIEditor_GetTake(self.id))

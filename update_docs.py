@@ -2,8 +2,8 @@
 Build ``docs/source/api_table.rst`` from ``docs/api.json``.
 """
 
-import reapy
-import reapy.core
+import renardo_reapy
+import renardo_reapy.core
 
 from collections import defaultdict
 import inspect
@@ -56,8 +56,8 @@ def get_changelog_links():
     )
     links = sorted([reapy_link(n, type="md") + "\n" for n in names])
     links.append(
-        "[`inside_reaper`]: (https://python-reapy.readthedocs.io/en/"
-        "latest/reapy.tools.html#reapy.tools.inside_reaper.inside_reaper)"
+        "[`inside_reaper`]: (https://python-renardo_reapy.readthedocs.io/en/"
+        "latest/renardo_reapy.tools.html#renardo_reapy.tools.inside_reaper.inside_reaper)"
     )
     return links
 
@@ -122,14 +122,14 @@ def reapy_link(s, type="rst"):
     if s == "DEPRECATED":
         return s
     if s in ("defer", "at_exit"):
-        url = "reapy.core.reaper.html#reapy.core.reaper.defer.{}".format(s)
+        url = "renardo_reapy.core.reaper.html#renardo_reapy.core.reaper.defer.{}".format(s)
     else:
         if s[0].lower() != s[0]:
-            page = "reapy.core.html"
-            anchor = "reapy.core." + s
+            page = "renardo_reapy.core.html"
+            anchor = "renardo_reapy.core." + s
         else:
-            page = "reapy.core.reaper.html"
-            anchor = "reapy.core.reaper."
+            page = "renardo_reapy.core.reaper.html"
+            anchor = "renardo_reapy.core.reaper."
             if "." in s:
                 anchor += s
             else:
@@ -138,7 +138,7 @@ def reapy_link(s, type="rst"):
     if type == "rst":
         return rst_link(s, url)
     else:
-        url = "https://python-reapy.readthedocs.io/en/latest/" + url
+        url = "https://python-renardo_reapy.readthedocs.io/en/latest/" + url
         return markdown_link("`{}`".format(s), url)
 
 

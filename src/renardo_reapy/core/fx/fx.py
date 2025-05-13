@@ -1,9 +1,9 @@
 """Define FX and FXParam classes."""
 
-import reapy
-from reapy import reascript_api as RPR
-from reapy.core import ReapyObject, ReapyObjectList
-from reapy.errors import DistError, UndefinedFXParamError
+import renardo_reapy
+from renardo_reapy import reascript_api as RPR
+from renardo_reapy.core import ReapyObject, ReapyObjectList
+from renardo_reapy.errors import DistError, UndefinedFXParamError
 
 
 class FX(ReapyObject):
@@ -32,7 +32,7 @@ class FX(ReapyObject):
         self.functions = self._get_functions()
 
     def _get_functions(self):
-        if isinstance(self.parent, reapy.Track):
+        if isinstance(self.parent, renardo_reapy.Track):
             type = "TrackFX_"
         else:
             type = "TakeFX_"
@@ -274,7 +274,7 @@ class FX(ReapyObject):
 
         :type: FXParamsList
         """
-        params = reapy.FXParamsList(self)
+        params = renardo_reapy.FXParamsList(self)
         return params
 
     @property
@@ -285,8 +285,8 @@ class FX(ReapyObject):
         :type: Track or Take
         """
         if self.parent_id.startswith("(MediaTrack*)"):
-            return reapy.Track(self.parent_id)
-        return reapy.Take(self.parent_id)
+            return renardo_reapy.Track(self.parent_id)
+        return renardo_reapy.Take(self.parent_id)
 
     @property
     def preset(self):
@@ -364,7 +364,7 @@ class FX(ReapyObject):
 
         :type: Window or NoneType
         """
-        window = reapy.Window(
+        window = renardo_reapy.Window(
             self.functions["GetFloatingWindow"](self.parent.id, self.index)
         )
         if not window._is_defined:
@@ -395,7 +395,7 @@ class FXList(ReapyObjectList):
     def __init__(self, parent):
         self.parent = parent
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def __delitem__(self, key):
         fxs = self[key] if isinstance(key, slice) else [self[key]]
         for fx in fxs:
@@ -404,7 +404,7 @@ class FXList(ReapyObjectList):
     def __getitem__(self, i):
         if isinstance(i, slice):
             return self._get_items_from_slice(i)
-        with reapy.inside_reaper():
+        with renardo_reapy.inside_reaper():
             if isinstance(i, str):
                 i = self._get_fx_index(name=i)
             n_fxs = self.parent.n_fxs
@@ -417,14 +417,14 @@ class FXList(ReapyObjectList):
     def __len__(self):
         return self.parent.n_fxs
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def _get_items_from_slice(self, slice):
         indices = range(*slice.indices(len(self)))
         return [self[i] for i in indices]
 
     def _get_fx_index(self, name):
         name = name[name.find(': ') + 2:]  # Remove FX type prefix
-        if isinstance(self.parent, reapy.Track):
+        if isinstance(self.parent, renardo_reapy.Track):
             prefix = "TrackFX_"
             args = (self.parent.id, name, False, 0)
         else:

@@ -1,6 +1,6 @@
-import reapy
-from reapy import reascript_api as RPR
-from reapy.core import ReapyObject
+import renardo_reapy
+from renardo_reapy import reascript_api as RPR
+from renardo_reapy.core import ReapyObject
 import typing as ty
 
 
@@ -20,7 +20,7 @@ class Item(ReapyObject):
         ...
 
     @property
-    def active_take(self) -> reapy.Take:
+    def active_take(self) -> renardo_reapy.Take:
         """
         Return the active take of the item.
 
@@ -31,7 +31,7 @@ class Item(ReapyObject):
         """
         ...
 
-    def add_take(self) -> reapy.Take:
+    def add_take(self) -> renardo_reapy.Take:
         """
         Create and return a new take in item.
 
@@ -49,7 +49,7 @@ class Item(ReapyObject):
     def get_info_value(self, param_name: str) -> float:
         ...
 
-    def get_take(self, index: int) -> reapy.Take:
+    def get_take(self, index: int) -> renardo_reapy.Take:
         """
         Return index-th take of item.
 
@@ -149,7 +149,7 @@ class Item(ReapyObject):
         ...
 
     @property
-    def project(self) -> reapy.Project:
+    def project(self) -> renardo_reapy.Project:
         """
         Return item parent project.
 
@@ -180,7 +180,7 @@ class Item(ReapyObject):
         ...
 
     @property
-    def takes(self) -> ty.List[reapy.Take]:
+    def takes(self) -> ty.List[renardo_reapy.Take]:
         """
         Return list of all takes of media item.
 
@@ -192,7 +192,7 @@ class Item(ReapyObject):
         ...
 
     @property
-    def track(self) -> reapy.Track:
+    def track(self) -> renardo_reapy.Track:
         """
         Parent track of item.
 
@@ -212,7 +212,7 @@ class Item(ReapyObject):
         ...
 
     @track.setter
-    def track(self, track: ty.Union[int, reapy.Track]) -> None:
+    def track(self, track: ty.Union[int, renardo_reapy.Track]) -> None:
         ...
 
     def update(self) -> None:

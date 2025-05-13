@@ -1,6 +1,6 @@
-import reapy
-from reapy import reascript_api as RPR
-from reapy.core import ReapyObject
+import renardo_reapy
+from renardo_reapy import reascript_api as RPR
+from renardo_reapy.core import ReapyObject
 import typing as ty
 
 
@@ -19,7 +19,7 @@ class Take(ReapyObject):
     def _args(self) -> ty.Tuple[str]:
         ...
 
-    def add_audio_accessor(self) -> reapy.AudioAccessor:
+    def add_audio_accessor(self) -> renardo_reapy.AudioAccessor:
         """
         Create audio accessor and return it.
 
@@ -55,7 +55,7 @@ class Take(ReapyObject):
         """
         ...
 
-    def add_fx(self, name: str, even_if_exists: bool = True) -> reapy.FX:
+    def add_fx(self, name: str, even_if_exists: bool = True) -> renardo_reapy.FX:
         """
         Add FX to track and return it.
 
@@ -178,7 +178,7 @@ class Take(ReapyObject):
         ...
 
     @property
-    def cc_events(self) -> reapy.CCList:
+    def cc_events(self) -> renardo_reapy.CCList:
         """
         List of CC events on take.
 
@@ -187,11 +187,11 @@ class Take(ReapyObject):
         ...
 
     @property
-    def envelopes(self) -> reapy.EnvelopeList:
+    def envelopes(self) -> renardo_reapy.EnvelopeList:
         ...
 
     @property
-    def fxs(self) -> reapy.FXList:
+    def fxs(self) -> renardo_reapy.FXList:
         """
         FXs on take.
 
@@ -232,7 +232,7 @@ class Take(ReapyObject):
         ...
 
     @property
-    def item(self) -> reapy.Item:
+    def item(self) -> renardo_reapy.Item:
         """
         Parent item.
 
@@ -255,8 +255,8 @@ class Take(ReapyObject):
         ...
 
     @property
-    def midi_events(self) -> reapy.core.item.midi_event.MIDIEventList[
-            reapy.core.item.midi_event.MIDIEvent]:
+    def midi_events(self) -> renardo_reapy.core.item.midi_event.MIDIEventList[
+            renardo_reapy.core.item.midi_event.MIDIEvent]:
         """
         Get all midi events as EventList.
 
@@ -347,7 +347,7 @@ class Take(ReapyObject):
         ...
 
     @property
-    def notes(self) -> reapy.NoteList:
+    def notes(self) -> renardo_reapy.NoteList:
         """
         List of MIDI notes on take.
 
@@ -405,11 +405,11 @@ class Take(ReapyObject):
         ...
 
     @property
-    def project(self) -> reapy.Project:
+    def project(self) -> renardo_reapy.Project:
         """
         Take parent project.
 
-        :type: reapy.Project
+        :type: renardo_reapy.Project
         """
 
     def _resolve_midi_unit(self,
@@ -475,7 +475,7 @@ class Take(ReapyObject):
         ...
 
     @property
-    def source(self) -> reapy.Source:
+    def source(self) -> renardo_reapy.Source:
         """
         Take source.
 
@@ -513,7 +513,7 @@ class Take(ReapyObject):
         ...
 
     @property
-    def track(self) -> reapy.Track:
+    def track(self) -> renardo_reapy.Track:
         """
         Parent track of take.
 
@@ -532,7 +532,7 @@ class Take(ReapyObject):
         ...
 
     @property
-    def visible_fx(self) -> ty.Optional[reapy.FX]:
+    def visible_fx(self) -> ty.Optional[renardo_reapy.FX]:
         """
         Visible FX in FX chain if any, else None.
 

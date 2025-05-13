@@ -1,6 +1,6 @@
-"""Define reapy.defer and reapy.at_exit."""
+"""Define renardo_reapy.defer and renardo_reapy.at_exit."""
 
-import reapy
+import renardo_reapy
 
 import os
 import sys
@@ -63,7 +63,7 @@ class ReaperConsole:
         pass
 
     def write(self, *args, **kwargs):
-        reapy.print(*args, **kwargs)
+        renardo_reapy.print(*args, **kwargs)
 
 
 def at_exit(f, *args, **kwargs):
@@ -94,19 +94,19 @@ def at_exit(f, *args, **kwargs):
     The following example opens a file and starts a loop that
     indefinitely writes integers to that file. Since we want the file
     to be closed when the user terminates script execution, call to
-    its ``close`` method is deferred to ``reapy.at_exit``.
+    its ``close`` method is deferred to ``renardo_reapy.at_exit``.
 
-    >>> import reapy
+    >>> import renardo_reapy
     >>> file = open("somefile.txt", "w")
     >>> def stupid_loop(i):
     ...     file.write(i)
-    ...     reapy.defer(stupid_loop, i + 1)
+    ...     renardo_reapy.defer(stupid_loop, i + 1)
     ...
-    >>> reapy.at_exit(file.close)
+    >>> renardo_reapy.at_exit(file.close)
     >>> stupid_loop(0)
     """
-    message = "reapy.at_exit can only be called inside REAPER."
-    assert reapy.is_inside_reaper(), message
+    message = "renardo_reapy.at_exit can only be called inside REAPER."
+    assert renardo_reapy.is_inside_reaper(), message
     Deferrer().defer(f, args, kwargs, at_exit=True)
 
 
@@ -141,14 +141,14 @@ def defer(f, *args, **kwargs):
     The following example creates a loop that indefinitely prints
     integers to the REAPER console, without blocking REAPER GUI.
 
-    >>> import reapy
+    >>> import renardo_reapy
     >>> def stupid_loop(i):
-    ...     reapy.print(i)
-    ...     reapy.defer(stupid_loop, i + 1)
+    ...     renardo_reapy.print(i)
+    ...     renardo_reapy.defer(stupid_loop, i + 1)
     ...
     >>> stupid_loop(0)
     """
     # Check we are inside REAPER
-    message = "reapy.defer can only be called inside REAPER."
-    assert reapy.is_inside_reaper(), message
+    message = "renardo_reapy.defer can only be called inside REAPER."
+    assert renardo_reapy.is_inside_reaper(), message
     Deferrer().defer(f, args, kwargs)

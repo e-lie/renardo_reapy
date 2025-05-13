@@ -1,6 +1,6 @@
 """Fix several ReaScript API bugs.
 
-All fixes will be applied to `reapy.reascript_api` by reapy during
+All fixes will be applied to `renardo_reapy.reascript_api` by reapy during
 the import process. Thus, this module is only intended to be used
 internally and should not be directly used by end-users.
 """
@@ -8,8 +8,8 @@ internally and should not be directly used by end-users.
 import ctypes as ct
 import re
 
-import reapy
-from reapy.reascript_api import _RPR
+import renardo_reapy
+from renardo_reapy.reascript_api import _RPR
 
 
 MAX_STRBUF = 4 * 1024 * 1024
@@ -272,7 +272,7 @@ def MIDI_SetTextSysexEvt(
     )
 
 
-@reapy.inside_reaper()
+@renardo_reapy.inside_reaper()
 def ValidatePtr2(p0, p1, p2):
     a = _RPR._ft["ValidatePtr2"]
     f = ct.CFUNCTYPE(ct.c_byte, ct.c_uint64, ct.c_uint64, ct.c_char_p)(a)

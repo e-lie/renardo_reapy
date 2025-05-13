@@ -1,5 +1,5 @@
-import reapy
-from reapy.tools import json
+import renardo_reapy
+from renardo_reapy.tools import json
 
 import sys
 import typing as ty
@@ -7,6 +7,6 @@ import typing as ty
 __all__: ty.List[str] = []
 
 
-@reapy.inside_reaper()
+@renardo_reapy.inside_reaper()
 def _get_api_names() -> ty.List[str]:
     ...

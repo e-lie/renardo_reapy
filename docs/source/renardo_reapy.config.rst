@@ -1,21 +1,21 @@
-reapy.config package
+renardo_reapy.config package
 ====================
 
 Submodules
 ----------
 
-reapy.config.config module
+renardo_reapy.config.config module
 --------------------------
 
-.. automodule:: reapy.config.config
+.. automodule:: renardo_reapy.config.config
     :members:
     :undoc-members:
     :show-inheritance:
 
-reapy.config.errors module
+renardo_reapy.config.errors module
 --------------------------
 
-.. automodule:: reapy.config.errors
+.. automodule:: renardo_reapy.config.errors
     :members:
     :undoc-members:
     :show-inheritance:
@@ -24,7 +24,7 @@ reapy.config.errors module
 Module contents
 ---------------
 
-.. automodule:: reapy.config
+.. automodule:: renardo_reapy.config
     :members:
     :undoc-members:
     :show-inheritance:

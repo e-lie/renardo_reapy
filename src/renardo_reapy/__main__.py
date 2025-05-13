@@ -1,6 +1,6 @@
 """Get setup infos."""
 
-from reapy.reascripts import enable_dist_api, disable_dist_api
+from renardo_reapy.reascripts import enable_dist_api, disable_dist_api
 
 import os
 import sys

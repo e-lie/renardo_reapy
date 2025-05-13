@@ -1,25 +1,25 @@
-import reapy
-from reapy.tools import json
+import renardo_reapy
+from renardo_reapy.tools import json
 
 import os
 import sys
 
 
-@reapy.inside_reaper()
+@renardo_reapy.inside_reaper()
 def _get_api_names():
     return __all__
 
 
-if reapy.is_inside_reaper():
+if renardo_reapy.is_inside_reaper():
     # Import functions without the useless starting "RPR_".
     import reaper_python as _RPR
     __all__ = [s[4:] for s in _RPR.__dict__ if s.startswith("RPR_")]
     for s in __all__:
         exec("{} = _RPR.__dict__['{}']".format(s, "RPR_" + s))
 
-    from reapy import additional_api as _A_API
+    from renardo_reapy import additional_api as _A_API
     for s in _A_API.__dict__:
-        exec("from reapy.additional_api import {}".format(s))
+        exec("from renardo_reapy.additional_api import {}".format(s))
 
     # Import SWS functions.
     try:
@@ -32,10 +32,10 @@ if reapy.is_inside_reaper():
     except ImportError:  # SWS is not installed
         pass
 else:
-    if reapy.dist_api_is_enabled():
+    if renardo_reapy.dist_api_is_enabled():
         __all__ = _get_api_names()
         func_def = (
-            "@reapy.inside_reaper()\n"
+            "@renardo_reapy.inside_reaper()\n"
             "def {name}(*args): return (name)(*args)"
         )
         exec("\n".join(func_def.format(name=name) for name in __all__))

@@ -1,7 +1,7 @@
-import reapy
-from reapy import reascript_api as RPR
-from reapy.core import ReapyObject
-from reapy.tools import depends_on_sws
+import renardo_reapy
+from renardo_reapy import reascript_api as RPR
+from renardo_reapy.core import ReapyObject
+from renardo_reapy.tools import depends_on_sws
 
 
 class Send(ReapyObject):
@@ -60,10 +60,10 @@ class Send(ReapyObject):
         :type: Track
         """
         pointer = self.get_info('P_DESTTRACK')
-        track_id = reapy.Track._get_id_from_pointer(pointer)
-        return reapy.Track(track_id)
+        track_id = renardo_reapy.Track._get_id_from_pointer(pointer)
+        return renardo_reapy.Track(track_id)
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def flip_phase(self):
         """
         Toggle whether phase is flipped.
@@ -243,7 +243,7 @@ class Send(ReapyObject):
         return tuple(self._midi_flags_unpacked[0])
 
     @midi_source.setter
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def midi_source(self, source):
         dest = self._midi_flags_unpacked[1]
         self._midi_flags_unpacked = (source, dest)
@@ -260,7 +260,7 @@ class Send(ReapyObject):
         return tuple(self._midi_flags_unpacked[1])
 
     @midi_dest.setter
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def midi_dest(self, dest):
         source = self._midi_flags_unpacked[0]
         self._midi_flags_unpacked = (source, dest)
@@ -313,8 +313,8 @@ class Send(ReapyObject):
         :type: Track
         """
         pointer = self.get_info('P_SRCTRACK')
-        track_id = reapy.Track._get_id_from_pointer(pointer)
-        return reapy.Track(track_id)
+        track_id = renardo_reapy.Track._get_id_from_pointer(pointer)
+        return renardo_reapy.Track(track_id)
 
     def unmute(self):
         """

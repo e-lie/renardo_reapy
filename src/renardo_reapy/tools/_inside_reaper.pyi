@@ -2,13 +2,13 @@ import contextlib
 import functools
 import typing as ty
 
-import reapy
-import reapy.config
-from reapy.errors import DisabledDistAPIError, DisabledDistAPIWarning
-if not reapy.is_inside_reaper():
+import renardo_reapy
+import renardo_reapy.config
+from renardo_reapy.errors import DisabledDistAPIError, DisabledDistAPIWarning
+if not renardo_reapy.is_inside_reaper():
     try:
         from .network import Client, WebInterface
-        _WEB_INTERFACE = WebInterface(reapy.config.WEB_INTERFACE_PORT)
+        _WEB_INTERFACE = WebInterface(renardo_reapy.config.WEB_INTERFACE_PORT)
         _CLIENT = Client(_WEB_INTERFACE.get_reapy_server_port())
     except DisabledDistAPIError:
         import warnings
@@ -34,13 +34,13 @@ class inside_reaper(contextlib.ContextDecorator):
     --------
     Instead of running:
 
-    >>> project = reapy.Project()
+    >>> project = renardo_reapy.Project()
     >>> l = [project.bpm for i in range(1000)
 
     which takes around 30 seconds, run:
 
-    >>> project = reapy.Project()
-    >>> with reapy.inside_reaper():
+    >>> project = renardo_reapy.Project()
+    >>> with renardo_reapy.inside_reaper():
     ...     l = [project.bpm for i in range(1000)
     ...
 
@@ -48,10 +48,10 @@ class inside_reaper(contextlib.ContextDecorator):
 
     Example usage as decorator:
 
-    >>> @reapy.inside_reaper()
+    >>> @renardo_reapy.inside_reaper()
     ... def add_n_tracks(n):
     ...     for x in range(n):
-    ...         reapy.Project().add_track()
+    ...         renardo_reapy.Project().add_track()
 
     """
 
@@ -100,20 +100,20 @@ def reconnect() -> None:
     Examples
     --------
     Assume no REAPER instance is active.
-    >>> import reapy
+    >>> import renardo_reapy
     DisabledDistAPIWarning: Can't reach distant API. Please start REAPER, or
-    call reapy.config.enable_dist_api() from inside REAPER to enable distant
+    call renardo_reapy.config.enable_dist_api() from inside REAPER to enable distant
     API.
       warnings.warn(DisabledDistAPIWarning())
-    >>> p = reapy.Project()  # Results in error
+    >>> p = renardo_reapy.Project()  # Results in error
     Traceback (most recent call last):
       File "<string>", line 1, in <module>
       File "C:\\Users\\despres\\Desktop\\reaper\\scripts\\reapy\\reapy\\core\\project\\project.py", line 26, in __init__
         id = RPR.EnumProjects(index, None, 0)[0]
-    AttributeError: module 'reapy.reascript_api' has no attribute 'EnumProjects'
+    AttributeError: module 'renardo_reapy.reascript_api' has no attribute 'EnumProjects'
     >>> # Now start REAPER
     ...
-    >>> reapy.reconnect()
-    >>> p = reapy.Project()  # No error!
+    >>> renardo_reapy.reconnect()
+    >>> p = renardo_reapy.Project()  # No error!
     """
     ...

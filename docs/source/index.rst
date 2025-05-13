@@ -6,7 +6,7 @@
 Welcome to renardo_reapy's documentation!
 =========================================
 
-renardo_reapy is a fork of python-reapy.
+renardo_reapy is a fork of python-renardo_reapy.
 
 .. toctree::
    :maxdepth: 2
@@ -14,7 +14,7 @@ renardo_reapy is a fork of python-reapy.
 
    Api guide <api_guide.html#://>
    Translation Table <api_table.html#://>
-   Install or uninstall reapy <install_guide.html#://>
+   Install or uninstall renardo_reapy <install_guide.html#://>
    Module Index <py-modindex.html#://>
    Index <genindex.html#://>
 
@@ -91,7 +91,7 @@ When used from inside REAPER, ``renardo_reapy`` has almost identical performance
 A small overhead due to sending function and arguments over the network will
 still occur each time a ``renardo_reapy`` function is called from outside REAPER. When
 running the same function many times in a row (e.g. over a thousand times), using
-:py:func:`renardo_reapy.map <reapy.core.map>` may significantly increase performance.
+:py:func:`renardo_reapy.map <renardo_reapy.core.map>` may significantly increase performance.
 See its documentation for more details.
 
 API documentation

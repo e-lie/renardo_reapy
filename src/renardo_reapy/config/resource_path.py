@@ -3,10 +3,10 @@
 import os
 import sys
 
-import reapy
+import renardo_reapy
 from .shared_library import is_windows, is_apple
 
-if not reapy.is_inside_reaper():
+if not renardo_reapy.is_inside_reaper():
     # Third-party imports crash REAPER when run inside it.
     import psutil
 

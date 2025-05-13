@@ -15,7 +15,7 @@ class ClassCache(dict):
         if self._core is None:
             # The import is here because otherwise there is an import loop
             # and to perform import just once.
-            self._core = importlib.import_module("reapy.core")
+            self._core = importlib.import_module("renardo_reapy.core")
         self[key] = getattr(self._core, key)
         return self[key]
 

@@ -9,7 +9,7 @@ This is a fork of [python-reapy](https://github.com/RomeoDespres/reapy).
 1. [Installation](#installation)
 2. [Usage](#usage)
     * [ReaScript API](#reascript-api)
-    * [`reapy` API](#reapy-api)
+    * [`renardo_reapy` API](#reapy-api)
     * [Performance](#performance)
     * [Documentation](#documentation)
 3. [Contributing](#contributing)
@@ -18,15 +18,15 @@ This is a fork of [python-reapy](https://github.com/RomeoDespres/reapy).
 
 ## Installation
 
-If you feel you need more explanation than the straightforward instructions below, head to the detailed [installation guide](https://python-reapy.readthedocs.io/en/latest/install_guide.html).
+If you feel you need more explanation than the straightforward instructions below, head to the detailed [installation guide](https://python-renardo_reapy.readthedocs.io/en/latest/install_guide.html).
 
-renardo_reapy is available via `pip`:
+renardo_renardo_reapy is available via `pip`:
 
 ```bash
 $ pip install renardo-reapy
 ```
 
-One additional step is required to let REAPER know renardo_reapy is available. First, open REAPER. Then in a terminal, run:
+One additional step is required to let REAPER know renardo_renardo_reapy is available. First, open REAPER. Then in a terminal, run:
 
 ```bash
 $ python -c "import renardo_reapy; renardo_reapy.configure_reaper()"

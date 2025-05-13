@@ -1,6 +1,6 @@
-import reapy
-from reapy import reascript_api as RPR
-from reapy.core import ReapyObject
+import renardo_reapy
+from renardo_reapy import reascript_api as RPR
+from renardo_reapy.core import ReapyObject
 
 
 class Item(ReapyObject):
@@ -27,7 +27,7 @@ class Item(ReapyObject):
         take : Take
             Active take of the item.
         """
-        take = reapy.Take(RPR.GetActiveTake(self.id))
+        take = renardo_reapy.Take(RPR.GetActiveTake(self.id))
         return take
 
     def add_take(self):
@@ -40,10 +40,10 @@ class Item(ReapyObject):
             New take in item.
         """
         take_id = RPR.AddTakeToMediaItem(self.id)
-        take = reapy.Take(take_id)
+        take = renardo_reapy.Take(take_id)
         return take
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     def delete(self):
         """Delete item."""
         RPR.DeleteTrackMediaItem(self.track.id, self.id)
@@ -67,10 +67,10 @@ class Item(ReapyObject):
             index-th take of media item.
         """
         take_id = RPR.GetItemTake(self.id, index)
-        take = reapy.Take(take_id)
+        take = renardo_reapy.Take(take_id)
         return take
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     @property
     def has_valid_id(self):
         """
@@ -170,9 +170,9 @@ class Item(ReapyObject):
         """
         Item parent project.
 
-        :type: reapy.Project
+        :type: renardo_reapy.Project
         """
-        return reapy.Project(RPR.GetItemProjectContext(self.id))
+        return renardo_reapy.Project(RPR.GetItemProjectContext(self.id))
 
     def set_info_value(self, param_name, value):
         return RPR.SetMediaItemInfo_Value(self.id, param_name, value)
@@ -195,7 +195,7 @@ class Item(ReapyObject):
         left, right = self, Item(right_id)
         return left, right
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     @property
     def takes(self):
         """
@@ -208,10 +208,10 @@ class Item(ReapyObject):
         """
         n_takes = RPR.GetMediaItemNumTakes(self.id)
         take_ids = [RPR.GetMediaItemTake(self.id, i) for i in range(n_takes)]
-        takes = [reapy.Take(take_id) for take_id in take_ids]
+        takes = [renardo_reapy.Take(take_id) for take_id in take_ids]
         return takes
 
-    @reapy.inside_reaper()
+    @renardo_reapy.inside_reaper()
     @property
     def track(self):
         """
@@ -231,13 +231,13 @@ class Item(ReapyObject):
         >>> item.track = 0  # Move to track 0
         """
         track_id = RPR.GetMediaItemTrack(self.id)
-        track = reapy.Track(track_id)
+        track = renardo_reapy.Track(track_id)
         return track
 
     @track.setter
     def track(self, track):
         if isinstance(track, int):
-            track = reapy.Track(track, project=self.project)
+            track = renardo_reapy.Track(track, project=self.project)
         RPR.MoveMediaItemToTrack(self.id, track.id)
 
     def update(self):
