@@ -23,6 +23,10 @@ dependencies = [
 ]
 keywords = ["REAPER", "DAW", "ReaScript", "API", "wrapper", "music", "audio"]
 
+[tool.hatch.build.targets.app]
+# scripts = ["renardo/__main__.py"]
+pyapp-version = "0.27.0"
+
 [project.urls]
 Homepage = "https://github.com/eliegavoty/renardo_reapy"
 "Bug Tracker" = "https://github.com/eliegavoty/renardo_reapy/issues"
@@ -31,4 +35,7 @@ Homepage = "https://github.com/eliegavoty/renardo_reapy"
 dev = [
     "pytest>=8.3.5",
 ]
+
+[project.scripts]
+check-uv = "renardo_reapy.tools.uv_installer:main"
 
