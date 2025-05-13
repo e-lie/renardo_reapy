@@ -106,7 +106,7 @@ def at_exit(f, *args, **kwargs):
     >>> stupid_loop(0)
     """
     message = "renardo_reapy.at_exit can only be called inside REAPER."
-    assert renardo_reapy.is_inside_reaper(), message
+    assert is_inside_reaper(), message
     Deferrer().defer(f, args, kwargs, at_exit=True)
 
 
@@ -150,5 +150,5 @@ def defer(f, *args, **kwargs):
     """
     # Check we are inside REAPER
     message = "renardo_reapy.defer can only be called inside REAPER."
-    assert renardo_reapy.is_inside_reaper(), message
+    assert is_inside_reaper(), message
     Deferrer().defer(f, args, kwargs)

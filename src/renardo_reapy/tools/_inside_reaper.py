@@ -4,9 +4,10 @@ import importlib
 
 import renardo_reapy.runtime
 import renardo_reapy.config
+from renardo_reapy.inside_reaper import is_inside_reaper
 from renardo_reapy.errors import DisabledDistAPIError, DisabledDistAPIWarning
 from .network import machines
-# if not renardo_reapy.is_inside_reaper():
+# if not is_inside_reaper():
 #     try:
 #         from .network import Client, WebInterface
 #         _WEB_INTERFACE = WebInterface(renardo_reapy.config.WEB_INTERFACE_PORT)
@@ -55,7 +56,7 @@ class inside_reaper(contextlib.ContextDecorator):
     """
 
     def __call__(self, func, encoded_func=None):
-        if renardo_reapy.is_inside_reaper():
+        if is_inside_reaper():
             return func
         if isinstance(func, property):
             return DistProperty.from_property(func)
@@ -72,11 +73,11 @@ class inside_reaper(contextlib.ContextDecorator):
         return super().__call__(func)
 
     def __enter__(self):
-        if not renardo_reapy.is_inside_reaper():
+        if not is_inside_reaper():
             machines.get_selected_client().request("HOLD")
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        if not renardo_reapy.is_inside_reaper():
+        if not is_inside_reaper():
             machines.get_selected_client().request("RELEASE")
         return False
 

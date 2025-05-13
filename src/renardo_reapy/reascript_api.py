@@ -1,16 +1,17 @@
 import renardo_reapy.runtime
-from renardo_reapy.tools import json
+from renardo_reapy.tools import json, inside_reaper
+from renardo_reapy.inside_reaper import is_inside_reaper
 
 import os
 import sys
 
 
-@renardo_reapy.inside_reaper()
+@inside_reaper()
 def _get_api_names():
     return __all__
 
 
-if renardo_reapy.is_inside_reaper():
+if is_inside_reaper():
     # Import functions without the useless starting "RPR_".
     import reaper_python as _RPR
     __all__ = [s[4:] for s in _RPR.__dict__ if s.startswith("RPR_")]

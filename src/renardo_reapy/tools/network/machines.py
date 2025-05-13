@@ -6,7 +6,7 @@ import renardo_reapy.runtime
 import renardo_reapy.config
 from renardo_reapy import errors
 from . import client, web_interface
-
+from renardo_reapy.inside_reaper import is_inside_reaper
 
 CLIENT = None
 CLIENTS = {None: None}
@@ -51,7 +51,7 @@ def reconnect():
     >>> renardo_reapy.reconnect()
     >>> p = renardo_reapy.Project()  # No error!
     """
-    if not renardo_reapy.is_inside_reaper():
+    if not is_inside_reaper():
         host = get_selected_machine_host()
         if host is None:
             # We are outside REAPER, so this means initial import failed to
@@ -127,7 +127,7 @@ def register_machine(host):
     --------
     ``renardo_reapy.connect``
     """
-    if renardo_reapy.is_inside_reaper() and host == "localhost":
+    if is_inside_reaper() and host == "localhost":
         msg = "A REAPER instance can not connect to istelf."
         raise errors.InsideREAPERError(msg)
     interface_port = renardo_reapy.config.WEB_INTERFACE_PORT
@@ -135,6 +135,6 @@ def register_machine(host):
     CLIENTS[host] = client.Client(interface.get_reapy_server_port(), host)
 
 
-if not renardo_reapy.is_inside_reaper():
+if not is_inside_reaper():
     connect("localhost")
     CLIENTS[None] = CLIENT

@@ -290,7 +290,7 @@ def disable_dist_api():
     ``renardo_reapy.reascripts.activate_reapy_server`` from the
     Actions list.
     """
-    if not renardo_reapy.is_inside_reaper():
+    if not is_inside_reaper():
         raise OutsideREAPERError
     delete_web_interface(renardo_reapy.get_resource_path(), WEB_INTERFACE_PORT)
     reascript_path = get_activate_reapy_server_path()
@@ -317,7 +317,7 @@ def enable_dist_api():
         "Use renardo_reapy.config.configure_reaper instead."
     )
     warnings.warn(FutureWarning(msg))
-    if not renardo_reapy.is_inside_reaper():
+    if not is_inside_reaper():
         raise OutsideREAPERError
     create_new_web_interface(WEB_INTERFACE_PORT)
     reascript_path = get_activate_reapy_server_path()

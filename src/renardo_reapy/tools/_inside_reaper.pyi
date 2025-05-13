@@ -5,7 +5,7 @@ import typing as ty
 import renardo_reapy.runtime
 import renardo_reapy.runtime.config
 from renardo_reapy.errors import DisabledDistAPIError, DisabledDistAPIWarning
-if not renardo_reapy.is_inside_reaper():
+if not is_inside_reaper():
     try:
         from .network import Client, WebInterface
         _WEB_INTERFACE = WebInterface(renardo_reapy.config.WEB_INTERFACE_PORT)
