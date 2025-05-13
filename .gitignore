@@ -1,8 +1,10 @@
-*.pyc
-dist/*
-docs/build/*
-docs/make.bat
-docs/Makefile
-python_reapy.egg-info/
-*.sublime-workspace
-*.sublime-project
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
