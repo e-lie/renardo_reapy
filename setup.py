@@ -23,12 +23,12 @@ def find_stubs(package: str) -> Dict[str, List[str]]:
 
 
 setup(
-    name="python-reapy",
+    name="renardo-reapy",
     version=reapy.__version__,
-    description="A pythonic wrapper for REAPER's ReaScript Python API",
+    description="A pythonic wrapper for REAPER's ReaScript Python API (fork of python-reapy)",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    author="Roméo Després",
+    author="Elie Gavoty, forked from Roméo Després",
     author_email="mail.reapy@gmail.com",
     license="MIT",
     classifiers=[

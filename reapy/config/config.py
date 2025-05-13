@@ -69,8 +69,8 @@ class Config(ConfigParser):
         self.read(self.ini_file, encoding='utf8')
 
     def write(self):
-        # Backup config state before user has ever tried reapy
-        before_reapy_file = self.ini_file + '.before-reapy.bak'
+        # Backup config state before user has ever tried renardo_reapy
+        before_reapy_file = self.ini_file + '.before-renardo-reapy.bak'
         if not os.path.exists(before_reapy_file):
             shutil.copy(self.ini_file, before_reapy_file)
         # Backup current config
@@ -211,15 +211,15 @@ def configure_reaper(resource_path=None, detect_portable_install=True):
     enable_python(resource_path)
     add_web_interface(resource_path)
     action = add_reascript(resource_path, get_activate_reapy_server_path())
-    set_ext_state("reapy", "activate_reapy_server", action, resource_path)
+    set_ext_state("renardo_reapy", "activate_reapy_server", action, resource_path)
 
 
 def create_new_web_interface(port):
     """Create a Web interface in REAPER at a specified port.
 
     .. deprecated:: 0.8.0
-          ``create_new_web_interface`` will be removed in reapy 1.0.0.
-          Use :func:`reapy.config.add_web_interface` that works from
+          ``create_new_web_interface`` will be removed in renardo_reapy 1.0.0.
+          Use :func:`renardo_reapy.config.add_web_interface` that works from
           outside REAPER.
 
     It is added by writing a line directly in REAPER .ini file. Thus
@@ -232,7 +232,7 @@ def create_new_web_interface(port):
     """
     msg = (
         "Function create_new_web_interface is deprecated since 0.8.0. "
-        "Use reapy.config.add_web_interface instead."
+        "Use renardo_reapy.config.add_web_interface instead."
     )
     warnings.warn(FutureWarning(msg))
     config = Config(reapy.get_ini_file())
@@ -285,8 +285,8 @@ def disable_dist_api():
     """
     Disable distant API.
 
-    Delete ``reapy`` Web interface, and remove the ReaScript
-    ``reapy.reascripts.activate_reapy_server`` from the
+    Delete ``renardo_reapy`` Web interface, and remove the ReaScript
+    ``renardo_reapy.reascripts.activate_reapy_server`` from the
     Actions list.
     """
     if not reapy.is_inside_reaper():
@@ -295,7 +295,7 @@ def disable_dist_api():
     reascript_path = get_activate_reapy_server_path()
     reapy.remove_reascript(reascript_path)
     message = (
-        "reapy will be disabled as soon as you restart REAPER."
+        "renardo_reapy will be disabled as soon as you restart REAPER."
     )
     reapy.show_message_box(message)
 
@@ -304,16 +304,16 @@ def enable_dist_api():
     """Enable distant API.
 
     .. deprecated:: 0.8.0
-          ``enable_dist_api`` will be removed in reapy 1.0.0.
-          Use :func:`reapy.config.configure_reaper` that works
+          ``enable_dist_api`` will be removed in renardo_reapy 1.0.0.
+          Use :func:`renardo_reapy.config.configure_reaper` that works
           even from outside REAPER.
 
     Create a Web interface and add the ReaScript
-    ``reapy.reascripts.activate_reapy_server`` to the Actions list.
+    ``renardo_reapy.reascripts.activate_reapy_server`` to the Actions list.
     """
     msg = (
         "Function enable_dist_api is deprecated since 0.8.0. "
-        "Use reapy.config.configure_reaper instead."
+        "Use renardo_reapy.config.configure_reaper instead."
     )
     warnings.warn(FutureWarning(msg))
     if not reapy.is_inside_reaper():
@@ -322,11 +322,11 @@ def enable_dist_api():
     reascript_path = get_activate_reapy_server_path()
     action_id = reapy.add_reascript(reascript_path)
     command_name = json.dumps(reapy.get_command_name(action_id))
-    section, key, value = "reapy", "activate_reapy_server", command_name
+    section, key, value = "renardo_reapy", "activate_reapy_server", command_name
     reapy.set_ext_state(section, key, value, persist=True)
     message = (
-        "reapy successfully enabled!\n\nPlease restart REAPER.\n\nYou will "
-        "then be able to import reapy from the outside."
+        "renardo_reapy successfully enabled!\n\nPlease restart REAPER.\n\nYou will "
+        "then be able to import renardo_reapy from the outside."
     )
     reapy.show_message_box(message)
 

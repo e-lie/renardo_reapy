@@ -1,9 +1,9 @@
 """
-Activate ``reapy`` server.
+Activate ``renardo_reapy`` server.
 
-Running this ReaScript from inside REAPER sets the ``reapy`` server
+Running this ReaScript from inside REAPER sets the ``renardo_reapy`` server
 that receives and executes API calls requests from outside. It will
-automatically be run when importing ``reapy`` from outside, if it is
+automatically be run when importing ``renardo_reapy`` from outside, if it is
 enabled.
 """
 
@@ -32,14 +32,14 @@ def run_main_loop():
     reapy.defer(run_main_loop)
 
 
-def get_new_reapy_server():
+def get_new_renardo_reapy_server():
     server_port = reapy.config.REAPY_SERVER_PORT
-    reapy.set_ext_state("reapy", "server_port", server_port)
+    reapy.set_ext_state("renardo_reapy", "server_port", server_port)
     server = Server(server_port)
     return server
 
 
 if __name__ == "__main__":
-    SERVER = get_new_reapy_server()
+    SERVER = get_new_renardo_reapy_server()
     run_main_loop()
-    reapy.at_exit(reapy.delete_ext_state, "reapy", "server_port")
+    reapy.at_exit(reapy.delete_ext_state, "renardo_reapy", "server_port")

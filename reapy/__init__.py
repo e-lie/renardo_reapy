@@ -32,4 +32,5 @@ from .core import *
 from .core.reaper import *
 
 
-__version__ = "0.10.0"
+# This is a fork of python-reapy maintained by Elie Gavoty
+__version__ = "0.10.0-renardo"

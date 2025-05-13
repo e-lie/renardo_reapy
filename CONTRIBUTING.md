@@ -1,6 +1,6 @@
-# Contributing to `reapy`
+# Contributing to `renardo_reapy`
 
-First, thanks for being interested in contributing to `reapy`!
+First, thanks for being interested in contributing to `renardo_reapy`!
 
 There are several ways you can contribute to the project:
 1. [Reporting bugs](#reporting-bugs)
@@ -12,15 +12,15 @@ There are several ways you can contribute to the project:
 
 ### Reporting bugs
 
-Some features of `reapy` may have been too quickly tested and have bugs. Don't hesitate to report them by creating an [issue](https://github.com/RomeoDespres/reapy/issues).
+Some features of `renardo_reapy` may have been too quickly tested and have bugs. Don't hesitate to report them by creating an issue.
 
 ### Requesting features
 
-The API doesn't cover the whole ReaScript API yet. If some features are critical to you, please open an [issue](https://github.com/RomeoDespres/reapy/issues). It will help prioritize future work.
+The API doesn't cover the whole ReaScript API yet. If some features are critical to you, please open an issue. It will help prioritize future work.
 
 ## Extending the source code
 
-Direct contributions to the code are warmly welcomed. You can contribute by hitting the **Fork** button in the top right corner of the [project page](https://github.com/RomeoDespres/reapy).
+Direct contributions to the code are warmly welcomed. You can contribute by hitting the **Fork** button in the top right corner of the project page.
 
 ### Improving documentation
 
@@ -30,7 +30,7 @@ Documentation aims to follow the [numpy docs convention](https://docs.scipy.org/
 
 There are two ways of adding features:
 
-1. wrapping ReaScript API (*i.e.* pick a ReaScript API function and include it in `reapy`),
+1. wrapping ReaScript API (*i.e.* pick a ReaScript API function and include it in `renardo_reapy`),
 2. extending the API beyond ReaScript (*i.e.* building new features that you find the ReaScript API misses).
 
 In both cases, the code should:
