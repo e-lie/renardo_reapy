@@ -1,6 +1,7 @@
 from .core.reaper import *
 from .core import *
 from . import reascript_api as reascript_api
+from .pyapp import launch
 from .tools import (
     connect, connect_to_default_machine, dist_api_is_enabled, inside_reaper,
     reconnect
@@ -107,4 +108,5 @@ __all__ = [
     'dist_api_is_enabled',
     'inside_reaper',
     'reconnect',
+    'launch',
 ]

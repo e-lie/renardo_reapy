@@ -9,4 +9,8 @@ wheels/
 # Virtual environments
 .venv
 
+.idea
+.claude
+.vscode
+
 **/.claude/settings.local.json
